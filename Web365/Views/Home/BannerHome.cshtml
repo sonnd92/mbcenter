@@ -1,0 +1,9 @@
+﻿@model Web365Domain.AdvertiesItem
+@if (Model != null && Model.ListPicture != null && Model.ListPicture.Any())
+{
+    <div class="sp-bnmain">
+        <div class="container">
+            <a href="@Model.Link"><img src="@Web365Utility.Web365Utility.GetPathPicture(Model.ListPicture.FirstOrDefault().FileName)"class="wow flipInX" /></a>
+        </div>
+    </div>
+}

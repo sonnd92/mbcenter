@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewBag.Title = "Tin tức";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="sp-header-bot">
+    <div class="container">
+        <h1 class="sp-hbot-tit">Tin Tức</h1>
+    </div>
+</div>
+<div class="sp-main">
+    <div class="container">
+        <div class="row">
+            @Html.Action("ListNewestNews", "News", new {page = ViewBag.Page})
+            <!--LEFT-->
+            @Html.Action("MenuRight", "Layout")
+            <!--RIGHT-->
+        </div>
+    </div>
+</div>
+

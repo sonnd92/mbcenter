@@ -1,0 +1,15 @@
+E:\Project\Spa\SourceCode\Web365Utility\bin\Release\Web365Utility.dll
+E:\Project\Spa\SourceCode\Web365Utility\bin\Release\Web365Utility.pdb
+E:\Project\Spa\SourceCode\Web365Utility\bin\Release\EPPlus.dll
+E:\Project\Spa\SourceCode\Web365Utility\bin\Release\ImageResizer.dll
+E:\Project\Spa\SourceCode\Web365Utility\bin\Release\Newtonsoft.Json.dll
+E:\Project\Spa\SourceCode\Web365Utility\bin\Release\Web365Domain.dll
+E:\Project\Spa\SourceCode\Web365Utility\bin\Release\Web365Models.dll
+E:\Project\Spa\SourceCode\Web365Utility\bin\Release\Web365Domain.pdb
+E:\Project\Spa\SourceCode\Web365Utility\bin\Release\Web365Models.pdb
+E:\Project\Spa\SourceCode\Web365Utility\bin\Release\EPPlus.xml
+E:\Project\Spa\SourceCode\Web365Utility\bin\Release\ImageResizer.xml
+E:\Project\Spa\SourceCode\Web365Utility\bin\Release\Newtonsoft.Json.xml
+E:\Project\Spa\SourceCode\Web365Utility\obj\Release\Web365Utility.csprojResolveAssemblyReference.cache
+E:\Project\Spa\SourceCode\Web365Utility\obj\Release\Web365Utility.dll
+E:\Project\Spa\SourceCode\Web365Utility\obj\Release\Web365Utility.pdb

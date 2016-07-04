@@ -1,0 +1,7 @@
+E:\Project\Spa\SourceCode\Web365Models\bin\Release\Web365Models.dll
+E:\Project\Spa\SourceCode\Web365Models\bin\Release\Web365Models.pdb
+E:\Project\Spa\SourceCode\Web365Models\bin\Release\Web365Domain.dll
+E:\Project\Spa\SourceCode\Web365Models\bin\Release\Web365Domain.pdb
+E:\Project\Spa\SourceCode\Web365Models\obj\Release\Web365Models.csprojResolveAssemblyReference.cache
+E:\Project\Spa\SourceCode\Web365Models\obj\Release\Web365Models.dll
+E:\Project\Spa\SourceCode\Web365Models\obj\Release\Web365Models.pdb

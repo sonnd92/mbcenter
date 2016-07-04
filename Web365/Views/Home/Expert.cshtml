@@ -1,0 +1,27 @@
+﻿@model IEnumerable<Web365Domain.ArticleItem>
+@if (Model != null && Model.Any())
+{
+    <div class="sp-cgia">
+        <div class="container">
+            <h2 class="sp-weltit">Gặp gỡ chuyên gia</h2>
+            <div class="row">
+                @foreach (var item in Model)
+                {
+                    <div class="col-sm-3 col-xs-6">
+                        <div class="sp-cgia-i">
+                            <div class="sp-cgia-img">
+                                <img src="@Web365Utility.Web365Utility.GetPathPicture(item.Picture.FileName)" alt="@item.Title" class="wow flipInX" />
+                            </div>
+                            <div class="sp-cgia-imain">
+                                <h3 class="sp-cgia-name"><span>@item.Title</span></h3>
+                                <div class="sp-cgia-info">
+                                    @Html.Raw(item.Detail)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+}

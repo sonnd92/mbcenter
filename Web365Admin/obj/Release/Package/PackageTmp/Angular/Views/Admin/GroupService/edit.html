@@ -1,0 +1,54 @@
+﻿<form class="form-horizontal" id="modified-form" ng-submit="submit($event)" ng-controller="groupServiceModified">
+    <div class="content-modal">
+        <div class="modal-header">
+            <a href="javascript:;" class="close" ng-click="cancel()">×</a>
+            <h3 class="modal-title" ng-if="data.ID == 0">Thêm mới nhóm dịch vụ</h3>
+            <h3 class="modal-title" ng-if="data.ID != 0">Chỉnh sửa nhóm dịch vụ: {{data.Name}}</h3>
+        </div>
+        <div class="modal-body">
+            <div class="row-fluid">
+                <input type="hidden" name="ID" ng-value="data.ID" ng-model="data.ID" />
+                <div class="control-group">
+                    <label class="control-label" for="Name">Tên nhóm:</label>
+                    <div class="controls">
+                        <div class="span12">
+                            <input type="text" class="span6" name="Name" ng-model="data.Name" />
+                        </div>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="Summary">Mô tả:</label>
+                    <div class="controls">
+                        <input type="hidden" name="Summary" ng-value="data.Summary" />
+                        <div class="wysiwyg-editor editor" ng-bind-html="renderHtml(data.Summary)" wysiwyg>
+                        </div>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="ServiceId">Loại dịch vụ:</label>
+                    <div class="controls">
+                        <div class="span6">
+                            <tree list="listTreeDataForm" title="Loại dịch vụ" name="ServiceId" value="{{data.ServiceId}}" select-one="true" collapsed="collapsed"></tree>
+                        </div>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="IsShow">Hiển thị:</label>
+                    <div class="controls">
+                        <div class="span3">
+                            <label>
+                                <input type="checkbox" class="ace-switch ace-switch-1" name="IsShow" ng-value="data.IsShow" ng-model="data.IsShow" />
+                                <span class="lbl"></span>
+                                <input type="hidden" name="IsShow" ng-value="data.IsShow" />
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-primary">Lưu</button>
+            <a href="javascript:;" class="btn btn-warning" ng-click="cancel()">Thoát</a>
+        </div>
+    </div>
+</form>

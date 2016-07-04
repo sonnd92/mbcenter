@@ -1,0 +1,37 @@
+﻿@model IEnumerable<Web365Domain.ArticleItem>
+@if (Model != null && Model.Any())
+{
+    <div class="sp-home-news">
+        <div class="container">
+            <h2 class="sp-weltit">Tin mới nhất</h2>
+            <div class="swiper-container sp-homenews">
+                <div class="swiper-wrapper">
+                    @foreach (var news in Model)
+                    {
+                        <div class="swiper-slide">
+                            <div class="sp-hnews-i clearfix">
+                                <div class="sp-hnews-img">
+                                    <a href="@Web365Utility.ConfigWeb.Domain/tin-tuc/@news.TitleAscii" title="@news.Title">
+                                        <img src="@Web365Utility.Web365Utility.GetPathPicture(news.Picture.FileName)" alt="@news.Title" class="wow flipInX" />
+                                    </a>
+                                </div>
+                                <div class="sp-hnews-info">
+                                    <a class="sp-hnews-name" href="@Web365Utility.ConfigWeb.Domain/tin-tuc/@news.TitleAscii" title="@news.Title">
+                                        <h3>@news.Title</h3>
+                                    </a>
+                                    <div class="sp-hnews-des">
+                                        @Html.Raw(news.Summary)
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+            <div class="sp-btn-btnpn">
+                <div class="sp-homenews-prev sp-btn-p"></div>
+                <div class="sp-homenews-next sp-btn-n"></div>
+            </div>
+        </div>
+    </div>
+}

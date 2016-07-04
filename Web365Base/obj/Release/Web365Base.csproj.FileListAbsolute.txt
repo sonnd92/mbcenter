@@ -1,0 +1,10 @@
+E:\Project\Spa\SourceCode\Web365Base\bin\Release\Web365Base.dll.config
+E:\Project\Spa\SourceCode\Web365Base\bin\Release\Web365Base.dll
+E:\Project\Spa\SourceCode\Web365Base\bin\Release\Web365Base.pdb
+E:\Project\Spa\SourceCode\Web365Base\bin\Release\EntityFramework.dll
+E:\Project\Spa\SourceCode\Web365Base\bin\Release\EntityFramework.SqlServer.dll
+E:\Project\Spa\SourceCode\Web365Base\bin\Release\EntityFramework.xml
+E:\Project\Spa\SourceCode\Web365Base\bin\Release\EntityFramework.SqlServer.xml
+E:\Project\Spa\SourceCode\Web365Base\obj\Release\Web365Base.csprojResolveAssemblyReference.cache
+E:\Project\Spa\SourceCode\Web365Base\obj\Release\Web365Base.dll
+E:\Project\Spa\SourceCode\Web365Base\obj\Release\Web365Base.pdb

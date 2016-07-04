@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="bab896ed14084e58840d118d7713469b" Name="Diagram1">
+        <EntityTypeShape EntityType="web365db.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="web365db.AspNetRoles" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="web365db.AspNetUserClaims" Width="1.5" PointX="5.25" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="web365db.AspNetUserLogins" Width="1.5" PointX="5.25" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="web365db.AspNetUsers" Width="1.5" PointX="3" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="web365db.sysdiagrams" Width="1.5" PointX="2.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="web365db.tblAdverties_Picture_Map" Width="1.5" PointX="10.5" PointY="60" IsExpanded="true" />
+        <EntityTypeShape EntityType="web365db.tblAdvertise" Width="1.5" PointX="8.25" PointY="51.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="web365db.tblArticle" Width="1.5" PointX="9.75" PointY="67.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="web365db.tblBooking" Width="1.5" PointX="10" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="web365db.tblBookingType" Width="1.5" PointX="7.75" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="web365db.tblComment" Width="1.5" PointX="9.75" PointY="40.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="web365db.tblContact" Width="1.5" PointX="12.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="web365db.tblCustomer" Width="1.5" PointX="7.5" PointY="39.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="web365db.tblDetail" Width="1.5" PointX="4.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="web365db.tblDistributor" Width="1.5" PointX="7.5" PointY="45.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="web365db.tblDomain" Width="1.5" PointX="12.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="web365db.tblFile" Width="1.5" PointX="9.75" PointY="74.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="web365db.tblGroup_Article_Map" Width="1.5" PointX="12" PointY="63.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="web365db.tblGroup_TypeArticle_Map" Width="1.5" PointX="12.75" PointY="76.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="web365db.tblGroupArticle" Width="1.5" PointX="7.5" PointY="56.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="web365db.tblGroupOfService" Width="1.5" PointX="3" PointY="52.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="web365db.tblGroupTypeArticle" Width="1.5" PointX="7.5" PointY="61.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="web365db.tblLanguage" Width="1.5" PointX="12.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="web365db.tblLayoutContent" Width="1.5" PointX="7.5" PointY="67" IsExpanded="true" />
+        <EntityTypeShape EntityType="web365db.tblManufacturer" Width="1.5" PointX="7.5" PointY="72.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="web365db.tblMenu" Width="1.5" PointX="5.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="web365db.tblOrder" Width="1.5" PointX="12.75" PointY="39.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="web365db.tblOrder_Shipping" Width="1.5" PointX="15" PointY="40.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="web365db.tblOrder_Status" Width="1.5" PointX="10.5" PointY="38.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="web365db.tblOrderDetail" Width="1.5" PointX="17.25" PointY="56.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="web365db.tblPage" Width="1.5" PointX="3" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="web365db.tblPicture" Width="1.5" PointX="5.25" PointY="57" IsExpanded="true" />
+        <EntityTypeShape EntityType="web365db.tblProduct" Width="1.5" PointX="12.75" PointY="66.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="web365db.tblProduct_Attribute_Map" Width="1.5" PointX="15" PointY="83.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="web365db.tblProduct_Status_Map" Width="1.5" PointX="15" PointY="68.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="web365db.tblProduct_Variant" Width="1.5" PointX="15" PointY="71.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="web365db.tblProductAttribute" Width="1.5" PointX="12" PointY="96.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="web365db.tblProductFilter" Width="1.5" PointX="15" PointY="77" IsExpanded="true" />
+        <EntityTypeShape EntityType="web365db.tblProductGroupAttribute" Width="1.5" PointX="9.75" PointY="96.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="web365db.tblProductLabel" Width="1.5" PointX="15" PointY="64.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="web365db.tblProductStatus" Width="1.5" PointX="12.75" PointY="57.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="web365db.tblProductType_Group_Map" Width="1.5" PointX="9.75" PointY="92.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="web365db.tblProductTypeGroup" Width="1.5" PointX="7.5" PointY="107.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="web365db.tblReceiveInfo" Width="1.5" PointX="10" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="web365db.tblReceiveInfoGroup" Width="1.5" PointX="7.75" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="web365db.tblService" Width="1.5" PointX="0.75" PointY="53.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="web365db.tblServiceDetail" Width="1.5" PointX="5.25" PointY="52.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="web365db.tblStepOfService" Width="1.5" PointX="3" PointY="56.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="web365db.tblSupport" Width="1.5" PointX="10" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="web365db.tblTypeArticle" Width="1.5" PointX="7.5" PointY="77.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="web365db.tblTypeFile" Width="1.5" PointX="7.5" PointY="83.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="web365db.tblTypeLog" Width="1.5" PointX="12.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="web365db.tblTypePicture" Width="1.5" PointX="7.5" PointY="89.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="web365db.tblTypeProduct" Width="1.5" PointX="7.5" PointY="95.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="web365db.tblTypeSupport" Width="1.5" PointX="7.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="web365db.tblTypeVideo" Width="1.5" PointX="7.5" PointY="101.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="web365db.tblVideo" Width="1.5" PointX="12" PointY="79.125" IsExpanded="true" />
+        <AssociationConnector Association="web365db.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="web365db.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="web365db.FK_tblAdverties_Picture_tblAdvertise" ManuallyRouted="false" />
+        <AssociationConnector Association="web365db.FK_tblAdverties_Picture_tblPicture" ManuallyRouted="false" />
+        <AssociationConnector Association="web365db.FK_tblArticle_tblPicture" ManuallyRouted="false" />
+        <AssociationConnector Association="web365db.FK_tblGroup_News_Map_tblNews" ManuallyRouted="false" />
+        <AssociationConnector Association="web365db.FK_tblNews_tblTypeNews" ManuallyRouted="false" />
+        <AssociationConnector Association="web365db.FK_tblBooking_tblBookingType" ManuallyRouted="false" />
+        <AssociationConnector Association="web365db.FK_tblComment_tblAccount" ManuallyRouted="false" />
+        <AssociationConnector Association="web365db.FK_tblComment_tblProduct" ManuallyRouted="false" />
+        <AssociationConnector Association="web365db.FK_tblCustomer_tblPicture" ManuallyRouted="false" />
+        <AssociationConnector Association="web365db.FK_tblOrder_tblCustomer" ManuallyRouted="false" />
+        <AssociationConnector Association="web365db.FK_tblDistributor_tblPicture" ManuallyRouted="false" />
+        <AssociationConnector Association="web365db.FK_tblProduct_tblDistributor" ManuallyRouted="false" />
+        <AssociationConnector Association="web365db.FK_tblFile_tblPicture" ManuallyRouted="false" />
+        <AssociationConnector Association="web365db.FK_tblFile_tblTypeFile" ManuallyRouted="false" />
+        <AssociationConnector Association="web365db.FK_tblVideo_tblFile" ManuallyRouted="false" />
+        <AssociationConnector Association="web365db.FK_tblGroup_News_Map_tblGroupNews" ManuallyRouted="false" />
+        <AssociationConnector Association="web365db.FK_tblGroup_TypeArticle_Map_tblGroupTypeArticle" ManuallyRouted="false" />
+        <AssociationConnector Association="web365db.FK_tblGroup_TypeArticle_Map_tblTypeArticle" ManuallyRouted="false" />
+        <AssociationConnector Association="web365db.FK_tblGroupNews_tblPicture" ManuallyRouted="false" />
+        <AssociationConnector Association="web365db.FK_tblGroupOfService_tblService" ManuallyRouted="false" />
+        <AssociationConnector Association="web365db.FK_tblServiceDetail_tblGroupOfService" ManuallyRouted="false" />
+        <AssociationConnector Association="web365db.FK_tblGroupTypeArticle_tblPicture" ManuallyRouted="false" />
+        <AssociationConnector Association="web365db.FK_tblLayoutContent_tblPicture" ManuallyRouted="false" />
+        <AssociationConnector Association="web365db.FK_tblManufacturer_tblPicture" ManuallyRouted="false" />
+        <AssociationConnector Association="web365db.FK_tblProduct_tblManufacturer" ManuallyRouted="false" />
+        <AssociationConnector Association="web365db.FK_tblMenu_tblMenu" ManuallyRouted="false" />
+        <AssociationConnector Association="web365db.FK_tblOrder_Shipping_tblOrder" ManuallyRouted="false" />
+        <AssociationConnector Association="web365db.FK_tblOrder_tblOrder_Status" ManuallyRouted="false" />
+        <AssociationConnector Association="web365db.FK_tblOrderDetail_tblOrder" ManuallyRouted="false" />
+        <AssociationConnector Association="web365db.FK_tblOrderDetail_tblProduct" ManuallyRouted="false" />
+        <AssociationConnector Association="web365db.FK_tblOrderDetail_tblProduct_Variant" ManuallyRouted="false" />
+        <AssociationConnector Association="web365db.FK_tblPage_tblPage" ManuallyRouted="false" />
+        <AssociationConnector Association="web365db.FK_tblImage_tblTypeImage" ManuallyRouted="false" />
+        <AssociationConnector Association="web365db.FK_tblProduct_tblPicture" ManuallyRouted="false" />
+        <AssociationConnector Association="web365db.FK_tblProductLabel_tblPicture" ManuallyRouted="false" />
+        <AssociationConnector Association="web365db.FK_tblService_tblPicture" ManuallyRouted="false" />
+        <AssociationConnector Association="web365db.FK_tblTypeArticle_tblPicture" ManuallyRouted="false" />
+        <AssociationConnector Association="web365db.FK_tblTypeFile_tblPicture" ManuallyRouted="false" />
+        <AssociationConnector Association="web365db.FK_tblTypeImage_tblPicture" ManuallyRouted="false" />
+        <AssociationConnector Association="web365db.FK_tblTypeProduct_tblPicture" ManuallyRouted="false" />
+        <AssociationConnector Association="web365db.FK_tblTypeVideo_tblPicture" ManuallyRouted="false" />
+        <AssociationConnector Association="web365db.FK_tblVideo_tblPicture" ManuallyRouted="false" />
+        <AssociationConnector Association="web365db.FK_tblProduct_Attribute_Map_tblProduct" ManuallyRouted="false" />
+        <AssociationConnector Association="web365db.FK_tblProduct_Status_Map_tblProduct" ManuallyRouted="false" />
+        <AssociationConnector Association="web365db.FK_tblProduct_tblTypeProduct" ManuallyRouted="false" />
+        <AssociationConnector Association="web365db.FK_tblProduct_Variant_tblProduct" ManuallyRouted="false" />
+        <AssociationConnector Association="web365db.FK_tblProduct_Attribute_Map_tblProductAttribute" ManuallyRouted="false" />
+        <AssociationConnector Association="web365db.FK_tblProduct_Status_Map_tblProductStatus" ManuallyRouted="false" />
+        <AssociationConnector Association="web365db.FK_tblProductAttribute_tblProductGroupAttribute" ManuallyRouted="false" />
+        <AssociationConnector Association="web365db.FK_tblProductFilter_tblProductFilter" ManuallyRouted="false" />
+        <AssociationConnector Association="web365db.FK_tblProductGroupAttribute_tblTypeProduct" ManuallyRouted="false" />
+        <AssociationConnector Association="web365db.FK_tblProductType_Group_Map_tblProductTypeGroup" ManuallyRouted="false" />
+        <AssociationConnector Association="web365db.FK_tblProductType_Group_Map_tblTypeProduct" ManuallyRouted="false" />
+        <AssociationConnector Association="web365db.FK_tblReceiveInfo_tblReceiveInfoGroup" ManuallyRouted="false" />
+        <AssociationConnector Association="web365db.FK_tblStepOfService_tblService" ManuallyRouted="false" />
+        <AssociationConnector Association="web365db.FK_tblSupport_tblTypeSupport" ManuallyRouted="false" />
+        <AssociationConnector Association="web365db.FK_tblTypeArticle_tblTypeArticle" ManuallyRouted="false" />
+        <AssociationConnector Association="web365db.FK_tblTypeFile_tblTypeFile" ManuallyRouted="false" />
+        <AssociationConnector Association="web365db.FK_tblTypeImage_tblTypeImage" ManuallyRouted="false" />
+        <AssociationConnector Association="web365db.FK_tblTypeProduct_tblTypeProduct1" ManuallyRouted="false" />
+        <AssociationConnector Association="web365db.FK_tblTypeVideo_tblTypeVideo" ManuallyRouted="false" />
+        <AssociationConnector Association="web365db.FK_tblVideo_tblTypeVideo" ManuallyRouted="false" />
+        <AssociationConnector Association="web365db.AspNetUserRoles" ManuallyRouted="false" />
+        <AssociationConnector Association="web365db.tblArticle_Picture_Map" ManuallyRouted="false" />
+        <AssociationConnector Association="web365db.tblPage_Role" ManuallyRouted="false" />
+        <AssociationConnector Association="web365db.tblProduct_File_Map" ManuallyRouted="false" />
+        <AssociationConnector Association="web365db.tblProduct_Filter_Map" ManuallyRouted="false" />
+        <AssociationConnector Association="web365db.tblProduct_Label_Map" ManuallyRouted="false" />
+        <AssociationConnector Association="web365db.tblProduct_Picture_Map" ManuallyRouted="false" />
+        <AssociationConnector Association="web365db.tblStepOfService_Picture_Map" ManuallyRouted="false" />
+        <AssociationConnector Association="web365db.tblTypeProduct_Picture_Map" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

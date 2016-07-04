@@ -1,0 +1,73 @@
+﻿@using Web365Utility
+@model Web365Models.ProductModel
+@{
+    ViewBag.Title = "Sản phẩm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script>
+    $(function() {
+        $("#product_order").change(function () {
+            var order = $(this).val();
+            var newUrl = window.location.pathname
+                + "?page=" + @(string.IsNullOrEmpty(Request.QueryString["page"]) ? 1 : Int32.Parse(Request.QueryString["page"]))
+                + "&orderBy=" + order;
+            window.location.href = newUrl;
+
+        });
+
+    })
+</script>
+<div class="sp-header-bot">
+    <div class="container">
+        <h1 class="sp-hbot-tit">Sản phẩm</h1>
+    </div>
+</div>
+
+<div class="sp-main">
+    <div class="container">
+        <div class="sp-bread">
+            <ul>
+                <li><a href="/">Trang chủ</a></li>
+                <li class="active"><a href="/san-pham" title="Sản phẩm">Sản phẩm</a></li>
+            </ul>
+        </div>
+        <div class="sp-lprod">
+            <div class="sp-lprod-top clearfix">
+                <p class="sp-lprod-count">Đang hiển thị 
+                <strong>@ViewBag.ItemShowed</strong> / <strong>@Model.Total</strong> sản phẩm</p>
+                <div class="sp-lprod-sort">
+                    <select id="product_order" class="form-control">
+                        <option value="0" @(string.IsNullOrEmpty(Request.QueryString["orderBy"]) || Request.QueryString["orderBy"] == "0" ? "selected" : string.Empty)>Thứ tự mặc định</option>
+                        <option value="1" @(!string.IsNullOrEmpty(Request.QueryString["orderBy"]) && Request.QueryString["orderBy"] == "1" ? "selected" : string.Empty)>Giá từ thấp đến cao</option>
+                        <option value="2" @(!string.IsNullOrEmpty(Request.QueryString["orderBy"]) && Request.QueryString["orderBy"] == "2" ? "selected" : string.Empty)>Giá từ cao đến thấp</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row sp-lprod-row">
+                @foreach (var prod in Model.ListProduct)
+                {
+                    <div class="col-xs-6 col-sm-4 col-md-3">
+                        <div class="sp-lprod-i">
+                            <div class="sp-lprod-img">
+                                <a href="@ConfigWeb.Domain/san-pham/@prod.NameAscii" title="@prod.Name">
+                                    <img src="@Web365Utility.GetPathPicture(prod.UrlPicture)" alt="@prod.Name" class="wow flipInX"/>
+                                </a>
+                            </div>
+                            <div class="sp-lprod-name">
+                                <a href="@ConfigWeb.Domain/san-pham/@prod.NameAscii" title="@prod.Name">
+                                    <h3>@prod.Name</h3></a>
+                            </div>
+                            <p class="sp-lprod-price">@Web365Utility.ConvertNumber(prod.Price) đ</p>
+                            <p class="sp-lprod-btn"><a href="/lien-he?prodId=@prod.ID" title="">ĐẶT MUA</a>
+                            </p>
+                        </div>
+                    </div>
+                }
+            </div>
+
+            @Paging.Page(Model.Total, string.IsNullOrEmpty(Request.QueryString["page"]) ? 1 : Int32.Parse(Request.QueryString["page"]), ConfigWeb.PageSizeProducts)
+        </div>
+    </div>
+</div> 
+@Html.Action("NewestNews", "Layout")
+

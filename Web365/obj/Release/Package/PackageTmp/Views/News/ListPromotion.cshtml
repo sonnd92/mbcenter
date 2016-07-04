@@ -1,0 +1,38 @@
+﻿@model Web365Models.ListArticleModel
+
+<div class="col-sm-9 col-xs-12">
+    <div class="sp-bread">
+        <ul>
+            <li><a href="/">Trang chủ</a></li>
+            <li class="active"><a href="/khuyen-mai" title="">Khuyến mại</a></li>
+        </ul>
+    </div>
+    <div class="sp-listnews">
+        @foreach (var item in Model.List)
+        {
+            <div class="sp-lnews-i">
+                <div class="row">
+                    <div class="col-xs-5">
+                        <a class="sp-lnews-img" href="/khuyen-mai/@Html.DisplayFor(modelItem => item.TitleAscii)" title="@Html.DisplayFor(modelItem => item.Title)">
+                            <img src="@Web365Utility.Web365Utility.GetPathPicture(item.Picture.FileName)" alt="@Html.DisplayFor(modelItem => item.Title)" class="wow flipInX" />
+                        </a>
+                    </div>
+                    <div class="col-xs-7">
+                        <a class="sp-lnews-name" href="/khuyen-mai/@Html.DisplayFor(modelItem => item.TitleAscii)" title="@Html.DisplayFor(modelItem => item.Title)">
+                            <h3>@Html.DisplayFor(modelItem => item.Title)</h3>
+                        </a>
+                        <div class="sp-lnews-dest">
+                            @Html.Raw(item.Summary)
+                        </div>
+                        <p class="sp-lnews-vmore">
+                            <a href="/khuyen-mai/@Html.DisplayFor(modelItem => item.TitleAscii)" title="@Html.DisplayFor(modelItem => item.Title)">CHI TIẾT ›</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+    @Paging.Page(Model.total, string.IsNullOrEmpty(Request.QueryString["page"]) ? 1 : Int32.Parse(Request.QueryString["page"]), Web365Utility.ConfigWeb.PageSizeNews)
+</div>
+

@@ -1,0 +1,9 @@
+E:\Project\Spa\SourceCode\Web365Domain\bin\Release\Web365Domain.dll
+E:\Project\Spa\SourceCode\Web365Domain\bin\Release\Web365Domain.pdb
+E:\Project\Spa\SourceCode\Web365Domain\bin\Release\Web365Base.dll
+E:\Project\Spa\SourceCode\Web365Domain\bin\Release\EntityFramework.dll
+E:\Project\Spa\SourceCode\Web365Domain\bin\Release\Web365Base.pdb
+E:\Project\Spa\SourceCode\Web365Domain\bin\Release\EntityFramework.xml
+E:\Project\Spa\SourceCode\Web365Domain\obj\Release\Web365Domain.csprojResolveAssemblyReference.cache
+E:\Project\Spa\SourceCode\Web365Domain\obj\Release\Web365Domain.dll
+E:\Project\Spa\SourceCode\Web365Domain\obj\Release\Web365Domain.pdb

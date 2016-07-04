@@ -1,0 +1,94 @@
+﻿@model Web365Domain.ProductItem
+@{ 
+    ViewBag.Title = Model.SEOTitle;
+    ViewBag.Description = Model.SEODescription;
+    ViewBag.Keywords = Model.SEOKeyword;
+    ViewBag.Image = Web365Utility.Web365Utility.GetPathPicture(Model.Picture.FileName);
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}  
+
+<div class="sp-header-bot">
+    <div class="container">
+        <h1 class="sp-hbot-tit">Sản phẩm</h1>
+    </div>
+</div>
+
+<div class="sp-main">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-9 col-xs-12">
+                <div class="sp-bread">
+                    <ul>
+                        <li><a href="/">Trang chủ</a></li>
+                        <li class="active"><a href="/san-pham" title="Sản phẩm">Sản phẩm</a></li>
+                    </ul>
+                </div>
+                <div class="sp-dtprod-main">
+                    <div class="row sp-dtprod-row">
+                        <div class="col-xs-5">
+                            <div class="sp-dtprod-img">
+                                <img src="@Web365Utility.Web365Utility.GetPathPicture(Model.Picture.FileName)" alt="@Model.Name">
+                            </div>
+                        </div>
+                        <div class="col-xs-7">
+                            <h1 class="sp-dtprod-name">@Model.Name</h1>
+                            <p class="sp-dtprod-price">@Web365Utility.Web365Utility.ConvertNumber(Model.Price)đ</p>
+                            <ul class="sp-dtprod-bot">
+                                <li class="sp-dtprod-btn"><a class="btn btn-danger" href="/lien-he?prodId=@Model.ID" title="">ĐẶT MUA</a></li>
+                                <li class="sp-dtprod-call">
+                                    <a href="tel:0988666888" title="">
+                                        <i class="glyphicon glyphicon-earphone"></i> Hotline: <strong>0988 666 888</strong>
+                                    </a>
+                                </li>
+                            </ul>
+                            <div class="sp-dtprod-share clearfix">
+                                <div class="social">
+                                    <span class="Facebook">
+                                        <span class="fb-like" data-href="@Web365Utility.ConfigWeb.Domain/san-pham/@Model.NameAscii" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></span>
+                                    </span>
+                                    <span class="google">
+                                        <g:plusone size="medium" href="@Web365Utility.ConfigWeb.Domain/san-pham/@Model.NameAscii"></g:plusone>
+                                    </span>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sp-dtprod-tab">
+                        <ul class="sp-dtprod-tabnav" role="tablist">
+                            <li role="presentation" class="active">
+                                <a href="#sp-dtprod-tab1" role="tab" data-toggle="tab">Mô tả sản phẩm</a>
+                            </li>
+                            <li role="presentation">
+                                <a href="#sp-dtprod-tab2" role="tab" data-toggle="tab">Bình luận</a>
+                            </li>
+                        </ul>
+                        <!-- Tab panes -->
+                        <div class="tab-content">
+                            <div role="tabpanel" class="tab-pane active" id="sp-dtprod-tab1">
+                                <div class="sp-dtprod-content clearfix">
+                                    @Html.Raw(Model.Detail)
+                                </div>
+                            </div>
+                            <div role="tabpanel" class="tab-pane" id="sp-dtprod-tab2">
+                                <div class="sp-dtprod-sfb clearfix">
+                                    <div class="fb-comments" data-href="@Web365Utility.ConfigWeb.Domain/san-pham/@Model.NameAscii" data-width="100%" data-numposts="5"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Sản phẩm liên quan-->
+                    @Html.Action("OtherProducts", new {prodId = Model.ID})
+                </div>
+            </div>
+            <!--LEFT-->
+            @Html.Action("MenuRight", "Layout")
+            <!--RIGHT-->
+        </div>
+    </div>
+</div>
+
+@section scripts
+{
+    <script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
+}

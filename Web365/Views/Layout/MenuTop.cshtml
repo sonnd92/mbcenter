@@ -1,0 +1,36 @@
+﻿@model IEnumerable<Web365Domain.Service.ServiceItem>
+<script>
+    $(function() {
+        var paths = window.location.pathname.split('/');
+        if (paths.length > 1 && paths[1]) {
+            var $el = $("ul.sp-navmenu").find("a[href='/" + paths[1] + "']").closest("li");
+            $el.addClass("active");
+        } else {
+            $("#home").addClass("active");
+        }
+    })
+</script>
+<div class="sp-header">
+    <div class="container">
+        <a class="sp-logo" href="/" title=" Trang chủ"><img src="~/images/logo.png" alt="Trang chủ" /></a>
+        <span class="sp-navmnicon"><i class="glyphicon glyphicon-menu-hamburger"></i></span>
+        <ul class="sp-navmenu clearfix">
+            <li id="home"><a href="/" title="Trang chủ">Trang chủ</a></li>
+            <li><a href="/gioi-thieu" title="Giới thiệu">Giới thiệu</a></li>
+            <li><a href="/san-pham" title="Sản phẩm">Sản phẩm</a></li>
+            <li>
+                <a href="/dich-vu" title="Dịch vụ">Dịch vụ</a>
+                <i class="sp-navmnsub"></i>
+                <ul>
+                    @foreach(var item in Model)
+                    {
+                        <li><a href="@Web365Utility.ConfigWeb.Domain/dich-vu/@item.TitleAscii" title="@item.Title">@item.Title</a></li>
+                    }
+                </ul>
+            </li>
+            <li><a href="/tin-tuc" title="Tin tức">Tin tức</a></li>
+            <li><a href="/khuyen-mai" title="Khuyến mãi">Khuyến mãi</a></li>
+            <li><a href="/lien-he" title="Liên hệ">Liên hệ</a></li>
+        </ul>
+    </div>
+</div>

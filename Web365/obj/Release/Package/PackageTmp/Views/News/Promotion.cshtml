@@ -1,0 +1,20 @@
+﻿@{
+    ViewBag.Title = "Khuyến mại";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="sp-header-bot">
+    <div class="container">
+        <h1 class="sp-hbot-tit">Khuyến mại</h1>
+    </div>
+</div>
+<div class="sp-main">
+    <div class="container">
+        <div class="row">
+            @Html.Action("ListPromotion", "News", new { page = ViewBag.Page })
+            <!--LEFT-->
+            @Html.Action("MenuRight", "Layout")
+            <!--RIGHT-->
+        </div>
+    </div>
+</div>

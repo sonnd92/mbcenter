@@ -1,0 +1,59 @@
+﻿@using System.Globalization
+@model Web365Domain.ArticleItem
+
+@{ 
+    ViewBag.Title = Model.SEOTitle;
+    ViewBag.Description = Model.SEODescription;
+    ViewBag.Keywords = Model.SEOKeyword;
+    ViewBag.Image = Web365Utility.Web365Utility.GetPathPicture(Model.Picture.FileName);
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="sp-header-bot">
+    <div class="container">
+        <h1 class="sp-hbot-tit">Tin Tức</h1>
+    </div>
+</div>
+<div class="sp-main">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-9 col-xs-12">
+                <div class="sp-bread">
+                    <ul>
+                        <li><a href="/">Trang chủ</a></li>
+                        <li class="active"><a href="/tin-tuc" title="Tin tức">Tin tức</a></li>
+                    </ul>
+                </div>
+                <div class="sp-dtnews-main">
+                    <h1 class="sp-dtnews-mname">@Model.Title</h1>
+                    <p class="sp-dtnews-time">
+                        @(Model.DateCreated != null
+                                                    ? Model.DateCreated.Value.ToString("dd/MM/yyyy, hh:mm", CultureInfo.InvariantCulture)
+                                                    : string.Empty)
+                </p>
+                <div class="sp-dtnews-main clearfix">
+                    @Html.Raw(Model.Detail)
+                </div>
+                <div class="sp-dtnews-fbcmt">
+                    <div class="social">
+                        <span class="Facebook">
+                            <span class="fb-like" data-href="@Web365Utility.ConfigWeb.Domain/tin-tuc/@Model.TitleAscii" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></span>
+                        </span>
+                        <span class="google">
+                            <g:plusone size="medium" href="@Web365Utility.ConfigWeb.Domain/tin-tuc/@Model.TitleAscii"></g:plusone>
+                        </span>
+                    </div>
+                    <div class="fb-comments" data-href="@Web365Utility.ConfigWeb.Domain/tin-tuc/@Model.TitleAscii" data-width="100%" data-numposts="5"></div>
+                </div>
+            </div>
+        </div>
+        <!--LEFT-->
+        @Html.Action("MenuRight", "Layout")
+        <!--RIGHT-->
+    </div>
+</div>
+</div>
+@section scripts
+{
+    <script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
+}

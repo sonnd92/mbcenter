@@ -1,0 +1,85 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@Html.Raw(ViewBag.Title)</title>
+    <meta name="title" content="@Html.Raw(ViewBag.Title)" />
+    @if (ViewBag.Description != null && !string.IsNullOrEmpty(ViewBag.Description))
+    {
+        <meta name="description" content="@Html.Raw(ViewBag.Description)" />
+    }
+    else
+    {
+        <meta name="description" content="Trung tâm Spa dịch vụ hàng đầu" />
+    }
+    @if (ViewBag.Keywords != null && !string.IsNullOrEmpty(ViewBag.Keywords))
+    {
+        <meta name="keywords" content="@Html.Raw(ViewBag.Keywords)" />
+    }
+    else
+    {
+        <meta name="keywords" content="spa, massage, sauna, massager, mom, baby" />
+    }
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,400italic,700&amp;subset=latin,vietnamese" rel="stylesheet" type="text/css">
+    @*@Styles.Render("~/Content/css")*@
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/Content/swiper.min.css" />
+    <link rel="stylesheet" href="~/Content/animate.css" />
+    <link rel="stylesheet" href="~/Content/jquery.fancybox.css" />
+    <link rel="stylesheet" href="~/Content/bootstrap-datetimepicker.min.css" />
+    <link rel="stylesheet" href="~/Content/jquery.toast.css" />
+    <link rel="stylesheet" href="~/Content/treset.css" />
+    <link rel="stylesheet" href="~/Content/tstyle.css"/>
+    @Scripts.Render("~/bundles/js")
+    <script>
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s);
+            js.id = id;
+            js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.6&appId=981270568656743";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+    <style>
+        /* This gets Google to fall into place */
+        .social {
+            font-size: 1px;
+        }
+
+            /* This gets Facebook to fall into place */
+            .social iframe {
+                vertical-align: top;
+            }
+
+            /* Set an optional width for your button wrappers */
+            .social span {
+                display: inline-block;
+                width: 95px;
+                float: left
+            }
+
+            /* Adjust the widths individually if you like */
+            .social .google {
+                width: 75px;
+            }
+    </style>
+</head>
+<body>
+    @Html.Action("MenuTop", "Layout")
+    @RenderBody()
+    @RenderSection("scripts", required: false)
+    @Html.Action("BookForm", "Layout")
+    @if (ViewBag.IsHome != null && ViewBag.IsHome == true)
+    {
+        @Html.Action("VideosAndPictures", "Layout")
+        @Html.Action("NewestNews", "Layout")
+
+    }
+@Html.Action("Footer", "Layout")
+    @section HeaderContent {
+        @RenderSection("scripts", required: false)
+    }
+</body>
+</html>

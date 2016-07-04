@@ -1,0 +1,44 @@
+﻿@using Web365Utility
+@model Web365Models.PictureModel
+@if (ViewBag.Video != null && Model != null)
+{
+    <div class="sp-media">
+        <div class="container">
+            <div class="row">
+                @if (ViewBag.Video != null)
+                {
+                    <div class="col-sm-6 col-xs-12">
+                        <h2 class="sp-medtit">Video</h2>
+                        <div class="sp-vdimg various fancybox.iframe" data-fancybox-href="@ViewBag.Video.Link.Replace("watch?v=", "v/")">
+                            <img src="@Web365Utility.GetPathPicture(ViewBag.Video.Picture != null ? ViewBag.Video.Picture.FileName : string.Empty)" alt="@ViewBag.Video.Name" class="wow flipInX" />
+                            <i></i>
+                        </div>
+                    </div>
+                }
+
+                @if (Model != null && Model.List.Any())
+                {
+                    <div class="col-sm-6 col-xs-12">
+                        <h2 class="sp-medtit">Hình ảnh</h2>
+                        <div class="row sp-mediarow">
+                            @foreach (var item in Model.List)
+                        {
+                        <div class="col-xs-6">
+                            <a class="sp-med-i fancybox-thumb" rel="fab-thumb1" href="@Web365Utility.GetPathPicture(item.FileName)" title="@item.Summary">
+                                <img src="@Web365Utility.GetPathPicture(item.FileName)" alt="" class="wow flipInX" />
+                                <p>@item.Summary</p>
+                            </a>
+                            <div class="sp-med-album">
+                                <a class="fancybox-thumb" rel="fab-thumb1" href="@Web365Utility.GetPathPicture(item.FileName)" title="@item.Summary">
+                                    <img src="@Web365Utility.GetPathPicture(item.FileName)" alt="@item.Summary" />
+                                </a>
+                            </div>
+                        </div>
+                        }
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+}

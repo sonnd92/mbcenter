@@ -1,0 +1,28 @@
+﻿@model IEnumerable<Web365Domain.ProductItem>
+@if (Model != null && Model.Any())
+{
+    <h2 class="sp-dtprod-sptit">Sản phẩm liên quan</h2>
+    <div class="row sp-lprod-row">
+        @foreach (var item in Model)
+        {
+            <div class="col-xs-6 col-sm-4">
+                <div class="sp-lprod-i">
+                    <div class="sp-lprod-img">
+                        <a href="@Web365Utility.ConfigWeb.Domain/san-pham/@item.NameAscii" title="@item.Name">
+                            <img src="@Web365Utility.Web365Utility.GetPathPicture(item.Picture.FileName)" alt="@item.Name" class="wow flipInX" />
+                        </a>
+                    </div>
+                    <div class="sp-lprod-name">
+                        <a href="@Web365Utility.ConfigWeb.Domain/san-pham/@item.NameAscii" title="@item.Name">
+                            <h3>@item.Name</h3>
+                        </a>
+                    </div>
+                    <p class="sp-lprod-price">@Web365Utility.Web365Utility.ConvertNumber(item.Price)đ</p>
+                    <p class="sp-lprod-btn">
+                        <a href="/lien-he?prodId=@item.ID" title="">ĐẶT MUA</a>
+                    </p>
+                </div>
+            </div>
+        }
+    </div>
+}

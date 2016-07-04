@@ -1,0 +1,14 @@
+﻿@helper TruncateStringHelper(string content, int maxLength)
+{
+    if (!string.IsNullOrEmpty(content))
+    {
+        if (content.Length > maxLength)
+        {
+            @content.Substring(0, maxLength)<text>...</text>
+        }
+        else
+        {
+            @content
+        }
+    }
+}

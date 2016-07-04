@@ -1,0 +1,14 @@
+D:\Web365\Web365Models\bin\Debug\Web365Models.dll
+D:\Web365\Web365Models\bin\Debug\Web365Models.pdb
+D:\Web365\Web365Models\bin\Debug\Web365Domain.dll
+D:\Web365\Web365Models\bin\Debug\Web365Domain.pdb
+D:\Web365\Web365Models\obj\Debug\Web365Models.csprojResolveAssemblyReference.cache
+D:\Web365\Web365Models\obj\Debug\Web365Models.dll
+D:\Web365\Web365Models\obj\Debug\Web365Models.pdb
+E:\Project\Spa\SourceCode\Web365Models\bin\Debug\Web365Models.dll
+E:\Project\Spa\SourceCode\Web365Models\bin\Debug\Web365Models.pdb
+E:\Project\Spa\SourceCode\Web365Models\bin\Debug\Web365Domain.dll
+E:\Project\Spa\SourceCode\Web365Models\bin\Debug\Web365Domain.pdb
+E:\Project\Spa\SourceCode\Web365Models\obj\Debug\Web365Models.csprojResolveAssemblyReference.cache
+E:\Project\Spa\SourceCode\Web365Models\obj\Debug\Web365Models.dll
+E:\Project\Spa\SourceCode\Web365Models\obj\Debug\Web365Models.pdb

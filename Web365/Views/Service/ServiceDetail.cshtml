@@ -1,0 +1,40 @@
+﻿@model Web365Domain.Service.ServiceItem
+@{
+    ViewBag.Title = Model.Title;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="sp-header-bot">
+    <div class="container">
+        <h1 class="sp-hbot-tit">Dịch vụ</h1>
+    </div>
+</div>
+
+<div class="sp-main">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-9 col-xs-12">
+                <div class="sp-bread">
+                    <ul>
+                        <li><a href="/">Trang chủ</a></li>
+                        <li class="active"><a href="/dich-vu" title="Dịch vụ">Dịch vụ</a></li>
+                    </ul>
+                </div>
+                <div class="sp-lsv">
+                    <div class="sp-dtsv-head clearfix">
+                        <h2 class="sp-dtsv-htit">@Model.Title</h2>
+                        <p class="sp-dtsv-bg"><a class="btn btn-danger" href="javascript:;" title=""><i class="glyphicon glyphicon-file"></i> Xem Bảng giá</a></p>
+                    </div>
+                    <div class="sp-lsv-about">
+                        @Html.Raw(Model.Summary)
+                    </div>
+
+                    @Html.Action("StepsOfService", new { id = Model.ID, title = Model.Title })
+
+                    @Html.Action("PriceTable", new { id = Model.ID, title = Model.Title })
+
+                </div>
+            </div>
+            @Html.Action("MenuRight", "Layout")
+        </div>
+    </div>
+</div>

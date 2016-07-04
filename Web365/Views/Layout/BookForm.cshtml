@@ -1,0 +1,176 @@
+﻿@using Web365Utility
+<div class="sp-dcho">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-md-4">
+                <div class="text-center">
+                    <img src="~/images/dc1.png" alt="" class="wow flipInX" />
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-8">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6 col-sm-push-6">
+                        <div class="sp-dchohline">
+                            <a href="tel: 0462938833" title="0462 938833">
+                                <i class="sp-hline sp-hlinered"></i> HOTLINE: 0462 938833
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-sm-pull-6">
+                        <ul class="sp-dchonav">
+                            <li class="active">
+                                <label>
+                                    <input type="radio" name="spDcho" checked="checked">
+                                    <span>Đặt lịch</span>
+                                </label>
+                            </li>
+                            @*<li>
+                                    <label>
+                                        <input type="radio" name="spDcho">
+                                        <span>Cho bé</span>
+                                    </label>
+                                </li>*@
+                        </ul>
+                    </div>
+                </div>
+                <div class="row">
+                    <form name="bookOrder">
+                        <div class="col-xs-12 col-sm-6">
+                            <ul class="sp-dchoform">
+                                <li><input type="text" name="BookName" class="form-control" placeholder="Họ & tên"></li>
+                                <li><input type="text" name="BookAddress" class="form-control" placeholder="Địa chỉ"></li>
+                                <li><input type="text" name="BookPhone" class="form-control" placeholder="SĐT"></li>
+                                <li>
+                                    <div class="sp-dchofrow clearfix">
+                                        <div class="sp-dchofcol1">
+                                            <input type="text" name="BookAge" class="form-control" placeholder="Độ tuổi">
+                                        </div>
+                                        <div class="sp-dchofcol2">
+                                            <select class="form-control" name="BookGender">
+                                                <option value="">Giới tính</option>
+                                                <option value="1">Nam</option>
+                                                <option value="0">Nữ</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <input name="BookDate" class="sp-dchoftime form-control" id="datetimepicker4" placeholder="Thời gian">
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-xs-12 col-sm-6">
+                            <div class="sp-dchoftarea">
+                                <textarea name="BookNote" class="form-control" placeholder="Nhập nội dung ..."></textarea>
+                            </div>
+                            <button id="submitOrder" type="submit" class="sp-dchofbtn btn btn-danger">Đặt chỗ ngay</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@Scripts.Render("~/bundles/jqueryval")
+<script>
+    $(function () {
+        $("form[name='bookOrder']").validate({
+            rules: {
+                BookName: {
+                    required: true,
+                    minlength: 3
+                },
+                BookAge: {
+                    required: true,
+                    number: true,
+                    min: 0,
+                    max: 100
+                },
+                BookPhone: {
+                    required: true,
+                    number: true,
+                    minlength: 9,
+                    maxlength: 11
+                },
+                BookGender: {
+                    required: true
+                },
+                BookDate: {
+                    required: true
+                },
+                BookAddress: {
+                    required: true
+                }
+            },
+            messages: {
+
+                BookName: {
+                    required: "Vui lòng nhập họ tên",
+                    minlength: "Vui lòng nhập họ tên"
+                },
+                BookAge: {
+                    required: "Vui lòng nhập độ tuổi",
+                    number: "Vui lòng nhập đúng độ tuổi",
+                    min: "Vui lòng nhập đúng độ tuổi" ,
+                    max: "Vui lòng nhập đúng độ tuổi"
+                },
+                BookPhone: {
+                    required: "Vui lòng nhập số điện thoại",
+                    number: "Vui lòng nhập số điện thoại",
+                    minlength: "Vui lòng nhập số điện thoại",
+                    maxlength: "Vui lòng nhập số điện thoại"
+                },
+                BookGender: {
+                    required: "Vui lòng chọn giới tính"
+                },
+                BookDate: {
+                    required: "Vui lòng chọn thời gian"
+                },
+                BookAddress: {
+                    required: "Vui lòng nhập địa chỉ"
+                }
+            },
+            submitHandler: function (form) {
+
+                $("#submitOrder").attr("disabled", true);
+                $("#submitOrder").text("ĐANG GỬI DỮ LIỆU...");
+
+                var obj = {};
+
+                obj.Name = $("input[name='BookName']").val();
+                obj.Address = $("input[name='BookAddress']").val();
+                obj.Phone = $("input[name='BookPhone']").val();
+                obj.Gender = $("select[name='BookGender']").val();
+                obj.Note = $("textarea[name='BookNote']").val();
+                obj.BookDate = $("input[name='BookDate']").val();
+                obj.Age = $("input[name='BookAge']").val();
+                obj.TypeBooking = @((int) StaticEnum.BookingType.ForMom);
+                obj.Gender = $("select[name='BookGender']").val() === "1";
+                $.post("/ajax/Order/Booking", { model: obj }, function (data) {
+
+                    if (!data.error) {
+                        form.reset();
+                        $.toast({  
+                            heading: "Thông báo",
+                            text: data.message,
+                            showHideTransition: 'slide',
+                            icon: 'success',
+                            position: 'bottom-right'
+                        });
+                    } else {
+                        $.toast({ 
+                            heading: "Thông báo",
+                            text: data.message,
+                            showHideTransition: 'slide',
+                            icon: 'error',
+                            position: 'bottom-right'
+                        });
+                    }
+
+                    $("#submitOrder").removeAttr("disabled");
+                    $("#submitOrder").text("ĐẶT CHỖ NGAY");
+                });
+            }
+        });
+    })
+</script>

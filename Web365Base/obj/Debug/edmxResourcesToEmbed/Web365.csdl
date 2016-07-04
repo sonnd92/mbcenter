@@ -1,0 +1,2543 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="web365db" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <ComplexType Name="SplitString_Result">
+    <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+  </ComplexType>
+  <ComplexType Name="SplitStringWithOrder_Result">
+    <Property Name="Value" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="DisplayOrder" Type="Int32" />
+  </ComplexType>
+  <EntityType Name="C__MigrationHistory">
+    <Key>
+      <PropertyRef Name="MigrationId" />
+      <PropertyRef Name="ContextKey" />
+    </Key>
+    <Property Name="MigrationId" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ContextKey" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+    <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetRoles">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="AspNetUsers" Relationship="Self.AspNetUserRoles" FromRole="AspNetRoles" ToRole="AspNetUsers" />
+    <NavigationProperty Name="tblPage" Relationship="Self.tblPage_Role" FromRole="AspNetRoles" ToRole="tblPage" />
+  </EntityType>
+  <EntityType Name="AspNetUserClaims">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUsers" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaims" ToRole="AspNetUsers" />
+  </EntityType>
+  <EntityType Name="AspNetUserLogins">
+    <Key>
+      <PropertyRef Name="LoginProvider" />
+      <PropertyRef Name="ProviderKey" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="LoginProvider" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ProviderKey" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="AspNetUsers" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogins" ToRole="AspNetUsers" />
+  </EntityType>
+  <EntityType Name="AspNetUsers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+    <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+    <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
+    <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
+    <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="tblAdverties_Picture_Map">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AdvertiesID" Type="Int32" />
+    <Property Name="PictureID" Type="Int32" />
+    <Property Name="DisplayOrder" Type="Int32" />
+    <NavigationProperty Name="tblAdvertise" Relationship="Self.FK_tblAdverties_Picture_tblAdvertise" FromRole="tblAdverties_Picture_Map" ToRole="tblAdvertise" />
+    <NavigationProperty Name="tblPicture" Relationship="Self.FK_tblAdverties_Picture_tblPicture" FromRole="tblAdverties_Picture_Map" ToRole="tblPicture" />
+  </EntityType>
+  <EntityType Name="tblAdvertise">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Detail" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="Link" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="StartDate" Type="DateTime" Precision="3" />
+    <Property Name="EndDate" Type="DateTime" Precision="3" />
+    <Property Name="LanguageId" Type="Int32" />
+    <Property Name="DateCreated" Type="DateTime" Precision="3" />
+    <Property Name="DateUpdated" Type="DateTime" Precision="3" />
+    <Property Name="CreateBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="UpdateBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="IsShow" Type="Boolean" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <NavigationProperty Name="tblAdverties_Picture_Map" Relationship="Self.FK_tblAdverties_Picture_tblAdvertise" FromRole="tblAdvertise" ToRole="tblAdverties_Picture_Map" />
+  </EntityType>
+  <EntityType Name="tblArticle">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="TitleAscii" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="TypeID" Type="Int32" />
+    <Property Name="Number" Type="Int32" />
+    <Property Name="PictureID" Type="Int32" />
+    <Property Name="Summary" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="Detail" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Viewed" Type="Int32" />
+    <Property Name="SEOTitle" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="SEODescription" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="SEOKeyword" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="DateCreated" Type="DateTime" Precision="3" />
+    <Property Name="DateUpdated" Type="DateTime" Precision="3" />
+    <Property Name="CreateBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="UpdateBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="IsShow" Type="Boolean" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <NavigationProperty Name="tblPicture" Relationship="Self.FK_tblArticle_tblPicture" FromRole="tblArticle" ToRole="tblPicture" />
+    <NavigationProperty Name="tblGroup_Article_Map" Relationship="Self.FK_tblGroup_News_Map_tblNews" FromRole="tblArticle" ToRole="tblGroup_Article_Map" />
+    <NavigationProperty Name="tblTypeArticle" Relationship="Self.FK_tblNews_tblTypeNews" FromRole="tblArticle" ToRole="tblTypeArticle" />
+    <NavigationProperty Name="tblPicture1" Relationship="Self.tblArticle_Picture_Map" FromRole="tblArticle" ToRole="tblPicture" />
+  </EntityType>
+  <EntityType Name="tblBooking">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Age" Type="Int32" />
+    <Property Name="DateCreated" Type="DateTime" Precision="3" />
+    <Property Name="DateUpdated" Type="DateTime" Precision="3" />
+    <Property Name="Gender" Type="Boolean" />
+    <Property Name="Address" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="BookDate" Type="DateTime" Precision="3" />
+    <Property Name="Note" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <Property Name="IsViewed" Type="Boolean" />
+    <Property Name="TypeBookingId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="tblBookingType" Relationship="Self.FK_tblBooking_tblBookingType" FromRole="tblBooking" ToRole="tblBookingType" />
+  </EntityType>
+  <EntityType Name="tblBookingType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tblBooking" Relationship="Self.FK_tblBooking_tblBookingType" FromRole="tblBookingType" ToRole="tblBooking" />
+  </EntityType>
+  <EntityType Name="tblComment">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProductID" Type="Int32" />
+    <Property Name="AccountID" Type="Int32" />
+    <Property Name="Detail" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="Boolean" />
+    <Property Name="AdminId" Type="Int32" />
+    <Property Name="Date" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="tblCustomer" Relationship="Self.FK_tblComment_tblAccount" FromRole="tblComment" ToRole="tblCustomer" />
+    <NavigationProperty Name="tblProduct" Relationship="Self.FK_tblComment_tblProduct" FromRole="tblComment" ToRole="tblProduct" />
+  </EntityType>
+  <EntityType Name="tblContact">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Gender" Type="Boolean" />
+    <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Title" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Message" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+    <Property Name="DateCreated" Type="DateTime" Precision="3" />
+    <Property Name="DateUpdated" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="IsViewed" Type="Boolean" />
+    <Property Name="IsDeleted" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="tblCustomer">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="FirstName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="LastName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Gender" Type="Boolean" />
+    <Property Name="BirthDay" Type="DateTime" Precision="3" />
+    <Property Name="PictureID" Type="Int32" />
+    <Property Name="Token" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="DateExpiredToken" Type="DateTime" Precision="3" />
+    <Property Name="DateCreated" Type="DateTime" Precision="3" />
+    <Property Name="DateUpdated" Type="DateTime" Precision="3" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <NavigationProperty Name="tblComment" Relationship="Self.FK_tblComment_tblAccount" FromRole="tblCustomer" ToRole="tblComment" />
+    <NavigationProperty Name="tblPicture" Relationship="Self.FK_tblCustomer_tblPicture" FromRole="tblCustomer" ToRole="tblPicture" />
+    <NavigationProperty Name="tblOrder" Relationship="Self.FK_tblOrder_tblCustomer" FromRole="tblCustomer" ToRole="tblOrder" />
+  </EntityType>
+  <EntityType Name="tblDetail">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Number" Type="Int32" />
+  </EntityType>
+  <EntityType Name="tblDistributor">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="NameAscii" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Number" Type="Int32" />
+    <Property Name="PictureID" Type="Int32" />
+    <Property Name="Summary" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="Detail" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SEOTitle" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="SEODescription" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="SEOKeyword" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="DateCreated" Type="DateTime" Precision="3" />
+    <Property Name="DateUpdated" Type="DateTime" Precision="3" />
+    <Property Name="CreateBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="UpdateBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="IsShow" Type="Boolean" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <NavigationProperty Name="tblPicture" Relationship="Self.FK_tblDistributor_tblPicture" FromRole="tblDistributor" ToRole="tblPicture" />
+    <NavigationProperty Name="tblProduct" Relationship="Self.FK_tblProduct_tblDistributor" FromRole="tblDistributor" ToRole="tblProduct" />
+  </EntityType>
+  <EntityType Name="tblDomain">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Domain" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TypeProductID" Type="Int32" />
+    <Property Name="FileCss" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tblFile">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="NameAscii" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="FileName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Size" Type="Int64" />
+    <Property Name="Number" Type="Int32" />
+    <Property Name="TypeID" Type="Int32" />
+    <Property Name="Summary" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="Detail" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="PictureID" Type="Int32" />
+    <Property Name="SEOTitle" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="SEODescription" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="SEOKeyword" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="DateCreated" Type="DateTime" Precision="3" />
+    <Property Name="DateUpdated" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="UpdatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="IsShow" Type="Boolean" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <NavigationProperty Name="tblPicture" Relationship="Self.FK_tblFile_tblPicture" FromRole="tblFile" ToRole="tblPicture" />
+    <NavigationProperty Name="tblTypeFile" Relationship="Self.FK_tblFile_tblTypeFile" FromRole="tblFile" ToRole="tblTypeFile" />
+    <NavigationProperty Name="tblVideo" Relationship="Self.FK_tblVideo_tblFile" FromRole="tblFile" ToRole="tblVideo" />
+    <NavigationProperty Name="tblProduct" Relationship="Self.tblProduct_File_Map" FromRole="tblFile" ToRole="tblProduct" />
+  </EntityType>
+  <EntityType Name="tblGroup_Article_Map">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NewsID" Type="Int32" />
+    <Property Name="GroupID" Type="Int32" />
+    <Property Name="DisplayOrder" Type="Int32" />
+    <NavigationProperty Name="tblArticle" Relationship="Self.FK_tblGroup_News_Map_tblNews" FromRole="tblGroup_Article_Map" ToRole="tblArticle" />
+    <NavigationProperty Name="tblGroupArticle" Relationship="Self.FK_tblGroup_News_Map_tblGroupNews" FromRole="tblGroup_Article_Map" ToRole="tblGroupArticle" />
+  </EntityType>
+  <EntityType Name="tblGroup_TypeArticle_Map">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ArticleTypeID" Type="Int32" />
+    <Property Name="GroupTypeID" Type="Int32" />
+    <Property Name="DisplayOrder" Type="Int32" />
+    <NavigationProperty Name="tblGroupTypeArticle" Relationship="Self.FK_tblGroup_TypeArticle_Map_tblGroupTypeArticle" FromRole="tblGroup_TypeArticle_Map" ToRole="tblGroupTypeArticle" />
+    <NavigationProperty Name="tblTypeArticle" Relationship="Self.FK_tblGroup_TypeArticle_Map_tblTypeArticle" FromRole="tblGroup_TypeArticle_Map" ToRole="tblTypeArticle" />
+  </EntityType>
+  <EntityType Name="tblGroupArticle">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="NameAscii" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Number" Type="Int32" />
+    <Property Name="PictureID" Type="Int32" />
+    <Property Name="Summary" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="Detail" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SEOTitle" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="SEODescription" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="SEOKeyword" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="DateCreated" Type="DateTime" Precision="3" />
+    <Property Name="DateUpdated" Type="DateTime" Precision="3" />
+    <Property Name="CreateBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="UpdateBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="IsShow" Type="Boolean" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <NavigationProperty Name="tblGroup_Article_Map" Relationship="Self.FK_tblGroup_News_Map_tblGroupNews" FromRole="tblGroupArticle" ToRole="tblGroup_Article_Map" />
+    <NavigationProperty Name="tblPicture" Relationship="Self.FK_tblGroupNews_tblPicture" FromRole="tblGroupArticle" ToRole="tblPicture" />
+  </EntityType>
+  <EntityType Name="tblGroupOfService">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Summary" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="NameAscii" Type="Binary" MaxLength="255" FixedLength="false" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <Property Name="IsShow" Type="Boolean" />
+    <Property Name="DateCreated" Type="DateTime" Precision="3" />
+    <Property Name="DateUpdated" Type="DateTime" Precision="3" />
+    <Property Name="ServiceId" Type="Int32" />
+    <NavigationProperty Name="tblService" Relationship="Self.FK_tblGroupOfService_tblService" FromRole="tblGroupOfService" ToRole="tblService" />
+    <NavigationProperty Name="tblServiceDetail" Relationship="Self.FK_tblServiceDetail_tblGroupOfService" FromRole="tblGroupOfService" ToRole="tblServiceDetail" />
+  </EntityType>
+  <EntityType Name="tblGroupTypeArticle">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="NameAscii" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Number" Type="Int32" />
+    <Property Name="PictureID" Type="Int32" />
+    <Property Name="Summary" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="Detail" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SEOTitle" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="SEODescription" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="SEOKeyword" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="DateCreated" Type="DateTime" Precision="3" />
+    <Property Name="DateUpdated" Type="DateTime" Precision="3" />
+    <Property Name="CreateBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="UpdateBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="IsShow" Type="Boolean" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <NavigationProperty Name="tblGroup_TypeArticle_Map" Relationship="Self.FK_tblGroup_TypeArticle_Map_tblGroupTypeArticle" FromRole="tblGroupTypeArticle" ToRole="tblGroup_TypeArticle_Map" />
+    <NavigationProperty Name="tblPicture" Relationship="Self.FK_tblGroupTypeArticle_tblPicture" FromRole="tblGroupTypeArticle" ToRole="tblPicture" />
+  </EntityType>
+  <EntityType Name="tblLanguage">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Code" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="IsShow" Type="Boolean" />
+    <Property Name="IsDeleted" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="tblLayoutContent">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="NameAscii" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="PictureID" Type="Int32" />
+    <Property Name="Summary" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="Detail" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SEOTitle" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="SEODescription" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="SEOKeyword" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="LanguageId" Type="Int32" />
+    <Property Name="DateCreated" Type="DateTime" Precision="3" />
+    <Property Name="DateUpdated" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="UpdateBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="IsShow" Type="Boolean" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <NavigationProperty Name="tblPicture" Relationship="Self.FK_tblLayoutContent_tblPicture" FromRole="tblLayoutContent" ToRole="tblPicture" />
+  </EntityType>
+  <EntityType Name="tblManufacturer">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="NameAscii" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Number" Type="Int32" />
+    <Property Name="PictureID" Type="Int32" />
+    <Property Name="Summary" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="Detail" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SEOTitle" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="SEODescription" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="SEOKeyword" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="DateCreated" Type="DateTime" Precision="3" />
+    <Property Name="DateUpdated" Type="DateTime" Precision="3" />
+    <Property Name="CreateBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="UpdateBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="IsShow" Type="Boolean" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <NavigationProperty Name="tblPicture" Relationship="Self.FK_tblManufacturer_tblPicture" FromRole="tblManufacturer" ToRole="tblPicture" />
+    <NavigationProperty Name="tblProduct" Relationship="Self.FK_tblProduct_tblManufacturer" FromRole="tblManufacturer" ToRole="tblProduct" />
+  </EntityType>
+  <EntityType Name="tblMenu">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="NameAscii" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Link" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Target" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="CssClass" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="DisplayOrder" Type="Int32" />
+    <Property Name="LanguageId" Type="Int32" />
+    <Property Name="Parent" Type="Int32" />
+    <Property Name="CreatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="UpdatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="DateCreated" Type="DateTime" Precision="3" />
+    <Property Name="DateUpdated" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="IsShow" Type="Boolean" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <NavigationProperty Name="tblMenu1" Relationship="Self.FK_tblMenu_tblMenu" FromRole="tblMenu" ToRole="tblMenu1" />
+    <NavigationProperty Name="tblMenu2" Relationship="Self.FK_tblMenu_tblMenu" FromRole="tblMenu1" ToRole="tblMenu" />
+  </EntityType>
+  <EntityType Name="tblOrder">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OrderStatusID" Type="Int32" />
+    <Property Name="TotalCost" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="DateCreated" Type="DateTime" Precision="3" />
+    <Property Name="DateUpdated" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="UpdatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Note" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="CustomerName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="CustomerID" Type="Int32" />
+    <Property Name="IsViewed" Type="Boolean" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <NavigationProperty Name="tblCustomer" Relationship="Self.FK_tblOrder_tblCustomer" FromRole="tblOrder" ToRole="tblCustomer" />
+    <NavigationProperty Name="tblOrder_Shipping" Relationship="Self.FK_tblOrder_Shipping_tblOrder" FromRole="tblOrder" ToRole="tblOrder_Shipping" />
+    <NavigationProperty Name="tblOrder_Status" Relationship="Self.FK_tblOrder_tblOrder_Status" FromRole="tblOrder" ToRole="tblOrder_Status" />
+    <NavigationProperty Name="tblOrderDetail" Relationship="Self.FK_tblOrderDetail_tblOrder" FromRole="tblOrder" ToRole="tblOrderDetail" />
+  </EntityType>
+  <EntityType Name="tblOrder_Shipping">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OrderID" Type="Int32" />
+    <Property Name="CustomerName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tblOrder" Relationship="Self.FK_tblOrder_Shipping_tblOrder" FromRole="tblOrder_Shipping" ToRole="tblOrder" />
+  </EntityType>
+  <EntityType Name="tblOrder_Status">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tblOrder" Relationship="Self.FK_tblOrder_tblOrder_Status" FromRole="tblOrder_Status" ToRole="tblOrder" />
+  </EntityType>
+  <EntityType Name="tblOrderDetail">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProductID" Type="Int32" />
+    <Property Name="ProductVariantID" Type="Int32" />
+    <Property Name="Quantity" Type="Int32" />
+    <Property Name="Price" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="OrderID" Type="Int32" />
+    <NavigationProperty Name="tblOrder" Relationship="Self.FK_tblOrderDetail_tblOrder" FromRole="tblOrderDetail" ToRole="tblOrder" />
+    <NavigationProperty Name="tblProduct" Relationship="Self.FK_tblOrderDetail_tblProduct" FromRole="tblOrderDetail" ToRole="tblProduct" />
+    <NavigationProperty Name="tblProduct_Variant" Relationship="Self.FK_tblOrderDetail_tblProduct_Variant" FromRole="tblOrderDetail" ToRole="tblProduct_Variant" />
+  </EntityType>
+  <EntityType Name="tblPage">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Link" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="ClassAtrtibute" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Parent" Type="Int32" />
+    <Property Name="HasChild" Type="Boolean" />
+    <Property Name="Number" Type="Int32" />
+    <Property Name="Detail" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+    <Property Name="DateCreated" Type="DateTime" Precision="3" />
+    <Property Name="DateUpdated" Type="DateTime" Precision="3" />
+    <Property Name="CreateBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="UpdateBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="IsShow" Type="Boolean" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <NavigationProperty Name="tblPage1" Relationship="Self.FK_tblPage_tblPage" FromRole="tblPage" ToRole="tblPage1" />
+    <NavigationProperty Name="tblPage2" Relationship="Self.FK_tblPage_tblPage" FromRole="tblPage1" ToRole="tblPage" />
+    <NavigationProperty Name="AspNetRoles" Relationship="Self.tblPage_Role" FromRole="tblPage" ToRole="AspNetRoles" />
+  </EntityType>
+  <EntityType Name="tblPicture">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="FileName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="TypeID" Type="Int32" />
+    <Property Name="Summary" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Alt" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Link" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Size" Type="Int64" />
+    <Property Name="DateCreated" Type="DateTime" Precision="3" />
+    <Property Name="DateUpdated" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="UpdatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="IsShow" Type="Boolean" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <NavigationProperty Name="tblAdverties_Picture_Map" Relationship="Self.FK_tblAdverties_Picture_tblPicture" FromRole="tblPicture" ToRole="tblAdverties_Picture_Map" />
+    <NavigationProperty Name="tblArticle" Relationship="Self.FK_tblArticle_tblPicture" FromRole="tblPicture" ToRole="tblArticle" />
+    <NavigationProperty Name="tblCustomer" Relationship="Self.FK_tblCustomer_tblPicture" FromRole="tblPicture" ToRole="tblCustomer" />
+    <NavigationProperty Name="tblDistributor" Relationship="Self.FK_tblDistributor_tblPicture" FromRole="tblPicture" ToRole="tblDistributor" />
+    <NavigationProperty Name="tblFile" Relationship="Self.FK_tblFile_tblPicture" FromRole="tblPicture" ToRole="tblFile" />
+    <NavigationProperty Name="tblGroupArticle" Relationship="Self.FK_tblGroupNews_tblPicture" FromRole="tblPicture" ToRole="tblGroupArticle" />
+    <NavigationProperty Name="tblGroupTypeArticle" Relationship="Self.FK_tblGroupTypeArticle_tblPicture" FromRole="tblPicture" ToRole="tblGroupTypeArticle" />
+    <NavigationProperty Name="tblLayoutContent" Relationship="Self.FK_tblLayoutContent_tblPicture" FromRole="tblPicture" ToRole="tblLayoutContent" />
+    <NavigationProperty Name="tblManufacturer" Relationship="Self.FK_tblManufacturer_tblPicture" FromRole="tblPicture" ToRole="tblManufacturer" />
+    <NavigationProperty Name="tblTypePicture" Relationship="Self.FK_tblImage_tblTypeImage" FromRole="tblPicture" ToRole="tblTypePicture" />
+    <NavigationProperty Name="tblProduct" Relationship="Self.FK_tblProduct_tblPicture" FromRole="tblPicture" ToRole="tblProduct" />
+    <NavigationProperty Name="tblProductLabel" Relationship="Self.FK_tblProductLabel_tblPicture" FromRole="tblPicture" ToRole="tblProductLabel" />
+    <NavigationProperty Name="tblService" Relationship="Self.FK_tblService_tblPicture" FromRole="tblPicture" ToRole="tblService" />
+    <NavigationProperty Name="tblTypeArticle" Relationship="Self.FK_tblTypeArticle_tblPicture" FromRole="tblPicture" ToRole="tblTypeArticle" />
+    <NavigationProperty Name="tblTypeFile" Relationship="Self.FK_tblTypeFile_tblPicture" FromRole="tblPicture" ToRole="tblTypeFile" />
+    <NavigationProperty Name="tblTypePicture1" Relationship="Self.FK_tblTypeImage_tblPicture" FromRole="tblPicture" ToRole="tblTypePicture" />
+    <NavigationProperty Name="tblTypeProduct" Relationship="Self.FK_tblTypeProduct_tblPicture" FromRole="tblPicture" ToRole="tblTypeProduct" />
+    <NavigationProperty Name="tblTypeVideo" Relationship="Self.FK_tblTypeVideo_tblPicture" FromRole="tblPicture" ToRole="tblTypeVideo" />
+    <NavigationProperty Name="tblVideo" Relationship="Self.FK_tblVideo_tblPicture" FromRole="tblPicture" ToRole="tblVideo" />
+    <NavigationProperty Name="tblArticle1" Relationship="Self.tblArticle_Picture_Map" FromRole="tblPicture" ToRole="tblArticle" />
+    <NavigationProperty Name="tblProduct1" Relationship="Self.tblProduct_Picture_Map" FromRole="tblPicture" ToRole="tblProduct" />
+    <NavigationProperty Name="tblStepOfService" Relationship="Self.tblStepOfService_Picture_Map" FromRole="tblPicture" ToRole="tblStepOfService" />
+    <NavigationProperty Name="tblTypeProduct1" Relationship="Self.tblTypeProduct_Picture_Map" FromRole="tblPicture" ToRole="tblTypeProduct" />
+  </EntityType>
+  <EntityType Name="tblProduct">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="NameAscii" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Serial" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="TypeID" Type="Int32" />
+    <Property Name="Manufacturer" Type="Int32" />
+    <Property Name="Distributor" Type="Int32" />
+    <Property Name="Price" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="Quantity" Type="Int32" />
+    <Property Name="PictureID" Type="Int32" />
+    <Property Name="HighLights" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+    <Property Name="Summary" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+    <Property Name="Detail" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Number" Type="Int32" />
+    <Property Name="Viewed" Type="Int32" />
+    <Property Name="SEOTitle" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="SEODescription" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="SEOKeyword" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="DateCreated" Type="DateTime" Precision="3" />
+    <Property Name="DateUpdated" Type="DateTime" Precision="3" />
+    <Property Name="CreateBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="UpdateBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="IsShow" Type="Boolean" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <NavigationProperty Name="tblComment" Relationship="Self.FK_tblComment_tblProduct" FromRole="tblProduct" ToRole="tblComment" />
+    <NavigationProperty Name="tblDistributor" Relationship="Self.FK_tblProduct_tblDistributor" FromRole="tblProduct" ToRole="tblDistributor" />
+    <NavigationProperty Name="tblManufacturer" Relationship="Self.FK_tblProduct_tblManufacturer" FromRole="tblProduct" ToRole="tblManufacturer" />
+    <NavigationProperty Name="tblOrderDetail" Relationship="Self.FK_tblOrderDetail_tblProduct" FromRole="tblProduct" ToRole="tblOrderDetail" />
+    <NavigationProperty Name="tblPicture" Relationship="Self.FK_tblProduct_tblPicture" FromRole="tblProduct" ToRole="tblPicture" />
+    <NavigationProperty Name="tblProduct_Attribute_Map" Relationship="Self.FK_tblProduct_Attribute_Map_tblProduct" FromRole="tblProduct" ToRole="tblProduct_Attribute_Map" />
+    <NavigationProperty Name="tblProduct_Status_Map" Relationship="Self.FK_tblProduct_Status_Map_tblProduct" FromRole="tblProduct" ToRole="tblProduct_Status_Map" />
+    <NavigationProperty Name="tblTypeProduct" Relationship="Self.FK_tblProduct_tblTypeProduct" FromRole="tblProduct" ToRole="tblTypeProduct" />
+    <NavigationProperty Name="tblProduct_Variant" Relationship="Self.FK_tblProduct_Variant_tblProduct" FromRole="tblProduct" ToRole="tblProduct_Variant" />
+    <NavigationProperty Name="tblFile" Relationship="Self.tblProduct_File_Map" FromRole="tblProduct" ToRole="tblFile" />
+    <NavigationProperty Name="tblProductFilter" Relationship="Self.tblProduct_Filter_Map" FromRole="tblProduct" ToRole="tblProductFilter" />
+    <NavigationProperty Name="tblProductLabel" Relationship="Self.tblProduct_Label_Map" FromRole="tblProduct" ToRole="tblProductLabel" />
+    <NavigationProperty Name="tblPicture1" Relationship="Self.tblProduct_Picture_Map" FromRole="tblProduct" ToRole="tblPicture" />
+  </EntityType>
+  <EntityType Name="tblProduct_Attribute_Map">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="ProductID" Type="Int32" />
+    <Property Name="AttributeID" Type="Int32" />
+    <NavigationProperty Name="tblProduct" Relationship="Self.FK_tblProduct_Attribute_Map_tblProduct" FromRole="tblProduct_Attribute_Map" ToRole="tblProduct" />
+    <NavigationProperty Name="tblProductAttribute" Relationship="Self.FK_tblProduct_Attribute_Map_tblProductAttribute" FromRole="tblProduct_Attribute_Map" ToRole="tblProductAttribute" />
+  </EntityType>
+  <EntityType Name="tblProduct_Status_Map">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProductID" Type="Int32" />
+    <Property Name="ProductStatusID" Type="Int32" />
+    <Property Name="DisplayOrder" Type="Int32" />
+    <NavigationProperty Name="tblProduct" Relationship="Self.FK_tblProduct_Status_Map_tblProduct" FromRole="tblProduct_Status_Map" ToRole="tblProduct" />
+    <NavigationProperty Name="tblProductStatus" Relationship="Self.FK_tblProduct_Status_Map_tblProductStatus" FromRole="tblProduct_Status_Map" ToRole="tblProductStatus" />
+  </EntityType>
+  <EntityType Name="tblProduct_Variant">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Code" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="ProductID" Type="Int32" />
+    <Property Name="Price" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="VAT" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="IsOutOfStock" Type="Boolean" />
+    <Property Name="Quantity" Type="Int32" />
+    <Property Name="DisplayOrder" Type="Int32" />
+    <Property Name="CreatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="UpdatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="DateCreated" Type="DateTime" Precision="3" />
+    <Property Name="DateUpdated" Type="DateTime" Precision="3" />
+    <Property Name="IsShow" Type="Boolean" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <NavigationProperty Name="tblOrderDetail" Relationship="Self.FK_tblOrderDetail_tblProduct_Variant" FromRole="tblProduct_Variant" ToRole="tblOrderDetail" />
+    <NavigationProperty Name="tblProduct" Relationship="Self.FK_tblProduct_Variant_tblProduct" FromRole="tblProduct_Variant" ToRole="tblProduct" />
+  </EntityType>
+  <EntityType Name="tblProductAttribute">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="NameAscii" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Number" Type="Int32" />
+    <Property Name="GroupID" Type="Int32" />
+    <Property Name="Detail" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="DateCreated" Type="DateTime" Precision="3" />
+    <Property Name="DateUpdated" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="UpdaetdBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="IsShow" Type="Boolean" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <NavigationProperty Name="tblProduct_Attribute_Map" Relationship="Self.FK_tblProduct_Attribute_Map_tblProductAttribute" FromRole="tblProductAttribute" ToRole="tblProduct_Attribute_Map" />
+    <NavigationProperty Name="tblProductGroupAttribute" Relationship="Self.FK_tblProductAttribute_tblProductGroupAttribute" FromRole="tblProductAttribute" ToRole="tblProductGroupAttribute" />
+  </EntityType>
+  <EntityType Name="tblProductFilter">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="NameAscii" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Number" Type="Int32" />
+    <Property Name="Parent" Type="Int32" />
+    <Property Name="Detail" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="LanguageId" Type="Int32" />
+    <Property Name="SEOTitle" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="SEODescription" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="SEOKeyword" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="DateCreated" Type="DateTime" Precision="3" />
+    <Property Name="DateUpdated" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="UpdatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="IsShow" Type="Boolean" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <NavigationProperty Name="tblProductFilter1" Relationship="Self.FK_tblProductFilter_tblProductFilter" FromRole="tblProductFilter" ToRole="tblProductFilter1" />
+    <NavigationProperty Name="tblProductFilter2" Relationship="Self.FK_tblProductFilter_tblProductFilter" FromRole="tblProductFilter1" ToRole="tblProductFilter" />
+    <NavigationProperty Name="tblProduct" Relationship="Self.tblProduct_Filter_Map" FromRole="tblProductFilter" ToRole="tblProduct" />
+  </EntityType>
+  <EntityType Name="tblProductGroupAttribute">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="NameAscii" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Number" Type="Int32" />
+    <Property Name="ProductTypeID" Type="Int32" />
+    <Property Name="Detail" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="DateCreated" Type="DateTime" Precision="3" />
+    <Property Name="DateUpdated" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="UpdatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="IsShow" Type="Boolean" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <NavigationProperty Name="tblProductAttribute" Relationship="Self.FK_tblProductAttribute_tblProductGroupAttribute" FromRole="tblProductGroupAttribute" ToRole="tblProductAttribute" />
+    <NavigationProperty Name="tblTypeProduct" Relationship="Self.FK_tblProductGroupAttribute_tblTypeProduct" FromRole="tblProductGroupAttribute" ToRole="tblTypeProduct" />
+  </EntityType>
+  <EntityType Name="tblProductLabel">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Number" Type="Int32" />
+    <Property Name="PictureID" Type="Int32" />
+    <Property Name="DateCreated" Type="DateTime" Precision="3" />
+    <Property Name="DateUpdated" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="UpdatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="IsShow" Type="Boolean" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <NavigationProperty Name="tblPicture" Relationship="Self.FK_tblProductLabel_tblPicture" FromRole="tblProductLabel" ToRole="tblPicture" />
+    <NavigationProperty Name="tblProduct" Relationship="Self.tblProduct_Label_Map" FromRole="tblProductLabel" ToRole="tblProduct" />
+  </EntityType>
+  <EntityType Name="tblProductStatus">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="NameAscii" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Number" Type="Int32" />
+    <Property Name="PictureID" Type="Int32" />
+    <Property Name="Summary" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="Detail" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SEOTitle" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="SEODescription" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="SEOKeyword" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="DateCreated" Type="DateTime" Precision="3" />
+    <Property Name="DateUpdated" Type="DateTime" Precision="3" />
+    <Property Name="CreateBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="UpdateBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="IsShow" Type="Boolean" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <NavigationProperty Name="tblProduct_Status_Map" Relationship="Self.FK_tblProduct_Status_Map_tblProductStatus" FromRole="tblProductStatus" ToRole="tblProduct_Status_Map" />
+  </EntityType>
+  <EntityType Name="tblProductType_Group_Map">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProductTypeID" Type="Int32" />
+    <Property Name="GroupTypeID" Type="Int32" />
+    <Property Name="DisplayOrder" Type="Int32" />
+    <NavigationProperty Name="tblProductTypeGroup" Relationship="Self.FK_tblProductType_Group_Map_tblProductTypeGroup" FromRole="tblProductType_Group_Map" ToRole="tblProductTypeGroup" />
+    <NavigationProperty Name="tblTypeProduct" Relationship="Self.FK_tblProductType_Group_Map_tblTypeProduct" FromRole="tblProductType_Group_Map" ToRole="tblTypeProduct" />
+  </EntityType>
+  <EntityType Name="tblProductTypeGroup">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="NameAscii" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Number" Type="Int32" />
+    <Property Name="PictureID" Type="Int32" />
+    <Property Name="Summary" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="Detail" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SEOTitle" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="SEODescription" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="SEOKeyword" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="DateCreated" Type="DateTime" Precision="3" />
+    <Property Name="DateUpdated" Type="DateTime" Precision="3" />
+    <Property Name="CreateBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="UpdateBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="IsShow" Type="Boolean" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <NavigationProperty Name="tblProductType_Group_Map" Relationship="Self.FK_tblProductType_Group_Map_tblProductTypeGroup" FromRole="tblProductTypeGroup" ToRole="tblProductType_Group_Map" />
+  </EntityType>
+  <EntityType Name="tblReceiveInfo">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="GroupID" Type="Int32" />
+    <Property Name="DateCreated" Type="DateTime" Precision="3" />
+    <Property Name="IsShow" Type="Boolean" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <NavigationProperty Name="tblReceiveInfoGroup" Relationship="Self.FK_tblReceiveInfo_tblReceiveInfoGroup" FromRole="tblReceiveInfo" ToRole="tblReceiveInfoGroup" />
+  </EntityType>
+  <EntityType Name="tblReceiveInfoGroup">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Detail" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+    <Property Name="DateCreated" Type="DateTime" Precision="3" />
+    <Property Name="IsShow" Type="Boolean" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <NavigationProperty Name="tblReceiveInfo" Relationship="Self.FK_tblReceiveInfo_tblReceiveInfoGroup" FromRole="tblReceiveInfoGroup" ToRole="tblReceiveInfo" />
+  </EntityType>
+  <EntityType Name="tblService">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Summary" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+    <Property Name="TitleAscii" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <Property Name="IsShow" Type="Boolean" />
+    <Property Name="DateCreated" Type="DateTime" Precision="3" />
+    <Property Name="DateUpdated" Type="DateTime" Precision="3" />
+    <Property Name="Index" Type="Int32" />
+    <Property Name="CreateBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="PictureId" Type="Int32" />
+    <Property Name="IsFeartured" Type="Boolean" />
+    <Property Name="SEOTitle" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="SEODescription" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="SEOKeyword" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tblGroupOfService" Relationship="Self.FK_tblGroupOfService_tblService" FromRole="tblService" ToRole="tblGroupOfService" />
+    <NavigationProperty Name="tblPicture" Relationship="Self.FK_tblService_tblPicture" FromRole="tblService" ToRole="tblPicture" />
+    <NavigationProperty Name="tblStepOfService" Relationship="Self.FK_tblStepOfService_tblService" FromRole="tblService" ToRole="tblStepOfService" />
+  </EntityType>
+  <EntityType Name="tblServiceDetail">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Detail" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="Price" Type="Int32" />
+    <Property Name="IsShow" Type="Boolean" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <Property Name="DateCreated" Type="DateTime" Precision="3" />
+    <Property Name="DateUpdated" Type="DateTime" Precision="3" />
+    <Property Name="Index" Type="Int32" />
+    <Property Name="GroupId" Type="Int32" />
+    <NavigationProperty Name="tblGroupOfService" Relationship="Self.FK_tblServiceDetail_tblGroupOfService" FromRole="tblServiceDetail" ToRole="tblGroupOfService" />
+  </EntityType>
+  <EntityType Name="tblStepOfService">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Step" Type="Int32" />
+    <Property Name="Course" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+    <Property Name="Uses" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+    <Property Name="DateCreated" Type="DateTime" Precision="3" />
+    <Property Name="IsShow" Type="Boolean" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <Property Name="CreateBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="UpdateBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="ServiceId" Type="Int32" />
+    <NavigationProperty Name="tblService" Relationship="Self.FK_tblStepOfService_tblService" FromRole="tblStepOfService" ToRole="tblService" />
+    <NavigationProperty Name="tblPicture" Relationship="Self.tblStepOfService_Picture_Map" FromRole="tblStepOfService" ToRole="tblPicture" />
+  </EntityType>
+  <EntityType Name="tblSupport">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FullName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="TypeID" Type="Int32" />
+    <Property Name="Number" Type="Int32" />
+    <Property Name="Yahoo" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Skype" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="DateCreated" Type="DateTime" Precision="3" />
+    <Property Name="DateUpdated" Type="DateTime" Precision="3" />
+    <Property Name="CreateBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="UpdateBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="IsShow" Type="Boolean" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <NavigationProperty Name="tblTypeSupport" Relationship="Self.FK_tblSupport_tblTypeSupport" FromRole="tblSupport" ToRole="tblTypeSupport" />
+  </EntityType>
+  <EntityType Name="tblTypeArticle">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="NameAscii" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Number" Type="Int32" />
+    <Property Name="PictureID" Type="Int32" />
+    <Property Name="Parent" Type="Int32" />
+    <Property Name="Summary" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="Detail" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="LanguageId" Type="Int32" />
+    <Property Name="SEOTitle" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="SEODescription" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="SEOKeyword" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="DateCreated" Type="DateTime" Precision="3" />
+    <Property Name="DateUpdated" Type="DateTime" Precision="3" />
+    <Property Name="CreateBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="UpdateBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="IsShow" Type="Boolean" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <NavigationProperty Name="tblArticle" Relationship="Self.FK_tblNews_tblTypeNews" FromRole="tblTypeArticle" ToRole="tblArticle" />
+    <NavigationProperty Name="tblGroup_TypeArticle_Map" Relationship="Self.FK_tblGroup_TypeArticle_Map_tblTypeArticle" FromRole="tblTypeArticle" ToRole="tblGroup_TypeArticle_Map" />
+    <NavigationProperty Name="tblPicture" Relationship="Self.FK_tblTypeArticle_tblPicture" FromRole="tblTypeArticle" ToRole="tblPicture" />
+    <NavigationProperty Name="tblTypeArticle1" Relationship="Self.FK_tblTypeArticle_tblTypeArticle" FromRole="tblTypeArticle" ToRole="tblTypeArticle1" />
+    <NavigationProperty Name="tblTypeArticle2" Relationship="Self.FK_tblTypeArticle_tblTypeArticle" FromRole="tblTypeArticle1" ToRole="tblTypeArticle" />
+  </EntityType>
+  <EntityType Name="tblTypeFile">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="NameAscii" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Number" Type="Int32" />
+    <Property Name="PictureID" Type="Int32" />
+    <Property Name="Parent" Type="Int32" />
+    <Property Name="Summary" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="Detail" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="LanguageId" Type="Int32" />
+    <Property Name="SEOTitle" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="SEODescription" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="SEOKeyword" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="DateCreated" Type="DateTime" Precision="3" />
+    <Property Name="DateUpdated" Type="DateTime" Precision="3" />
+    <Property Name="CreateBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="UpdateBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="IsShow" Type="Boolean" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <NavigationProperty Name="tblFile" Relationship="Self.FK_tblFile_tblTypeFile" FromRole="tblTypeFile" ToRole="tblFile" />
+    <NavigationProperty Name="tblPicture" Relationship="Self.FK_tblTypeFile_tblPicture" FromRole="tblTypeFile" ToRole="tblPicture" />
+    <NavigationProperty Name="tblTypeFile1" Relationship="Self.FK_tblTypeFile_tblTypeFile" FromRole="tblTypeFile" ToRole="tblTypeFile1" />
+    <NavigationProperty Name="tblTypeFile2" Relationship="Self.FK_tblTypeFile_tblTypeFile" FromRole="tblTypeFile1" ToRole="tblTypeFile" />
+  </EntityType>
+  <EntityType Name="tblTypeLog">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Number" Type="Int32" />
+  </EntityType>
+  <EntityType Name="tblTypePicture">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="NameAscii" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Number" Type="Int32" />
+    <Property Name="Parent" Type="Int32" />
+    <Property Name="PictureID" Type="Int32" />
+    <Property Name="Detail" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+    <Property Name="DateCreated" Type="DateTime" Precision="3" />
+    <Property Name="DateUpdated" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="UpdatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="SEOTitle" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="SEODescription" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="SEOKeyword" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="IsShow" Type="Boolean" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <NavigationProperty Name="tblPicture" Relationship="Self.FK_tblImage_tblTypeImage" FromRole="tblTypePicture" ToRole="tblPicture" />
+    <NavigationProperty Name="tblPicture1" Relationship="Self.FK_tblTypeImage_tblPicture" FromRole="tblTypePicture" ToRole="tblPicture" />
+    <NavigationProperty Name="tblTypePicture1" Relationship="Self.FK_tblTypeImage_tblTypeImage" FromRole="tblTypePicture" ToRole="tblTypePicture1" />
+    <NavigationProperty Name="tblTypePicture2" Relationship="Self.FK_tblTypeImage_tblTypeImage" FromRole="tblTypePicture1" ToRole="tblTypePicture" />
+  </EntityType>
+  <EntityType Name="tblTypeProduct">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="NameAscii" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Detail" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PictureID" Type="Int32" />
+    <Property Name="Number" Type="Int32" />
+    <Property Name="Parent" Type="Int32" />
+    <Property Name="LanguageId" Type="Int32" />
+    <Property Name="DateCreated" Type="DateTime" Precision="3" />
+    <Property Name="DateUpdated" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="SEOTitle" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="SEODescription" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="SEOKeyword" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="IsShow" Type="Boolean" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <NavigationProperty Name="tblPicture" Relationship="Self.FK_tblTypeProduct_tblPicture" FromRole="tblTypeProduct" ToRole="tblPicture" />
+    <NavigationProperty Name="tblProduct" Relationship="Self.FK_tblProduct_tblTypeProduct" FromRole="tblTypeProduct" ToRole="tblProduct" />
+    <NavigationProperty Name="tblProductGroupAttribute" Relationship="Self.FK_tblProductGroupAttribute_tblTypeProduct" FromRole="tblTypeProduct" ToRole="tblProductGroupAttribute" />
+    <NavigationProperty Name="tblProductType_Group_Map" Relationship="Self.FK_tblProductType_Group_Map_tblTypeProduct" FromRole="tblTypeProduct" ToRole="tblProductType_Group_Map" />
+    <NavigationProperty Name="tblTypeProduct1" Relationship="Self.FK_tblTypeProduct_tblTypeProduct1" FromRole="tblTypeProduct" ToRole="tblTypeProduct1" />
+    <NavigationProperty Name="tblTypeProduct2" Relationship="Self.FK_tblTypeProduct_tblTypeProduct1" FromRole="tblTypeProduct1" ToRole="tblTypeProduct" />
+    <NavigationProperty Name="tblPicture1" Relationship="Self.tblTypeProduct_Picture_Map" FromRole="tblTypeProduct" ToRole="tblPicture" />
+  </EntityType>
+  <EntityType Name="tblTypeSupport">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Number" Type="Int32" />
+    <Property Name="Detail" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="LanguageId" Type="Int32" />
+    <Property Name="DateCreated" Type="DateTime" Precision="3" />
+    <Property Name="DateUpdated" Type="DateTime" Precision="3" />
+    <Property Name="CreateBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="UpdateBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="IsShow" Type="Boolean" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <NavigationProperty Name="tblSupport" Relationship="Self.FK_tblSupport_tblTypeSupport" FromRole="tblTypeSupport" ToRole="tblSupport" />
+  </EntityType>
+  <EntityType Name="tblTypeVideo">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="NameAscii" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Number" Type="Int32" />
+    <Property Name="PictureID" Type="Int32" />
+    <Property Name="Parent" Type="Int32" />
+    <Property Name="Summary" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="Detail" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SEOTitle" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="SEODescription" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="SEOKeyword" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="DateCreated" Type="DateTime" Precision="3" />
+    <Property Name="DateUpdated" Type="DateTime" Precision="3" />
+    <Property Name="CreateBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="UpdateBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="IsShow" Type="Boolean" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <NavigationProperty Name="tblPicture" Relationship="Self.FK_tblTypeVideo_tblPicture" FromRole="tblTypeVideo" ToRole="tblPicture" />
+    <NavigationProperty Name="tblTypeVideo1" Relationship="Self.FK_tblTypeVideo_tblTypeVideo" FromRole="tblTypeVideo" ToRole="tblTypeVideo1" />
+    <NavigationProperty Name="tblTypeVideo2" Relationship="Self.FK_tblTypeVideo_tblTypeVideo" FromRole="tblTypeVideo1" ToRole="tblTypeVideo" />
+    <NavigationProperty Name="tblVideo" Relationship="Self.FK_tblVideo_tblTypeVideo" FromRole="tblTypeVideo" ToRole="tblVideo" />
+  </EntityType>
+  <EntityType Name="tblVideo">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="NameAscii" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Number" Type="Int32" />
+    <Property Name="TypeID" Type="Int32" />
+    <Property Name="Link" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="Summary" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="Detail" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="FileID" Type="Int32" />
+    <Property Name="PictureID" Type="Int32" />
+    <Property Name="SEOTitle" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="SEODescription" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="SEOKeyword" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="DateCreated" Type="DateTime" Precision="3" />
+    <Property Name="DateUpdated" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="UpdatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="IsShow" Type="Boolean" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <NavigationProperty Name="tblFile" Relationship="Self.FK_tblVideo_tblFile" FromRole="tblVideo" ToRole="tblFile" />
+    <NavigationProperty Name="tblPicture" Relationship="Self.FK_tblVideo_tblPicture" FromRole="tblVideo" ToRole="tblPicture" />
+    <NavigationProperty Name="tblTypeVideo" Relationship="Self.FK_tblVideo_tblTypeVideo" FromRole="tblVideo" ToRole="tblTypeVideo" />
+  </EntityType>
+  <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserClaims">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserLogins">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblAdverties_Picture_tblAdvertise">
+    <End Role="tblAdvertise" Type="Self.tblAdvertise" Multiplicity="0..1" />
+    <End Role="tblAdverties_Picture_Map" Type="Self.tblAdverties_Picture_Map" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblAdvertise">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tblAdverties_Picture_Map">
+        <PropertyRef Name="AdvertiesID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblAdverties_Picture_tblPicture">
+    <End Role="tblPicture" Type="Self.tblPicture" Multiplicity="0..1" />
+    <End Role="tblAdverties_Picture_Map" Type="Self.tblAdverties_Picture_Map" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblPicture">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tblAdverties_Picture_Map">
+        <PropertyRef Name="PictureID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblArticle_tblPicture">
+    <End Role="tblPicture" Type="Self.tblPicture" Multiplicity="0..1" />
+    <End Role="tblArticle" Type="Self.tblArticle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblPicture">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tblArticle">
+        <PropertyRef Name="PictureID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblGroup_News_Map_tblNews">
+    <End Role="tblArticle" Type="Self.tblArticle" Multiplicity="0..1" />
+    <End Role="tblGroup_Article_Map" Type="Self.tblGroup_Article_Map" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblArticle">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tblGroup_Article_Map">
+        <PropertyRef Name="NewsID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblNews_tblTypeNews">
+    <End Role="tblTypeArticle" Type="Self.tblTypeArticle" Multiplicity="0..1" />
+    <End Role="tblArticle" Type="Self.tblArticle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblTypeArticle">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tblArticle">
+        <PropertyRef Name="TypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblBooking_tblBookingType">
+    <End Role="tblBookingType" Type="Self.tblBookingType" Multiplicity="1" />
+    <End Role="tblBooking" Type="Self.tblBooking" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblBookingType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblBooking">
+        <PropertyRef Name="TypeBookingId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblComment_tblAccount">
+    <End Role="tblCustomer" Type="Self.tblCustomer" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="tblComment" Type="Self.tblComment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblCustomer">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tblComment">
+        <PropertyRef Name="AccountID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblComment_tblProduct">
+    <End Role="tblProduct" Type="Self.tblProduct" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="tblComment" Type="Self.tblComment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblProduct">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tblComment">
+        <PropertyRef Name="ProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblCustomer_tblPicture">
+    <End Role="tblPicture" Type="Self.tblPicture" Multiplicity="0..1" />
+    <End Role="tblCustomer" Type="Self.tblCustomer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblPicture">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tblCustomer">
+        <PropertyRef Name="PictureID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblOrder_tblCustomer">
+    <End Role="tblCustomer" Type="Self.tblCustomer" Multiplicity="0..1" />
+    <End Role="tblOrder" Type="Self.tblOrder" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblCustomer">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tblOrder">
+        <PropertyRef Name="CustomerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblDistributor_tblPicture">
+    <End Role="tblPicture" Type="Self.tblPicture" Multiplicity="0..1" />
+    <End Role="tblDistributor" Type="Self.tblDistributor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblPicture">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tblDistributor">
+        <PropertyRef Name="PictureID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblProduct_tblDistributor">
+    <End Role="tblDistributor" Type="Self.tblDistributor" Multiplicity="0..1" />
+    <End Role="tblProduct" Type="Self.tblProduct" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblDistributor">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tblProduct">
+        <PropertyRef Name="Distributor" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblFile_tblPicture">
+    <End Role="tblPicture" Type="Self.tblPicture" Multiplicity="0..1" />
+    <End Role="tblFile" Type="Self.tblFile" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblPicture">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tblFile">
+        <PropertyRef Name="PictureID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblFile_tblTypeFile">
+    <End Role="tblTypeFile" Type="Self.tblTypeFile" Multiplicity="0..1" />
+    <End Role="tblFile" Type="Self.tblFile" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblTypeFile">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tblFile">
+        <PropertyRef Name="TypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblVideo_tblFile">
+    <End Role="tblFile" Type="Self.tblFile" Multiplicity="0..1" />
+    <End Role="tblVideo" Type="Self.tblVideo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblFile">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tblVideo">
+        <PropertyRef Name="FileID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblGroup_News_Map_tblGroupNews">
+    <End Role="tblGroupArticle" Type="Self.tblGroupArticle" Multiplicity="0..1" />
+    <End Role="tblGroup_Article_Map" Type="Self.tblGroup_Article_Map" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblGroupArticle">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tblGroup_Article_Map">
+        <PropertyRef Name="GroupID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblGroup_TypeArticle_Map_tblGroupTypeArticle">
+    <End Role="tblGroupTypeArticle" Type="Self.tblGroupTypeArticle" Multiplicity="0..1" />
+    <End Role="tblGroup_TypeArticle_Map" Type="Self.tblGroup_TypeArticle_Map" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblGroupTypeArticle">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tblGroup_TypeArticle_Map">
+        <PropertyRef Name="GroupTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblGroup_TypeArticle_Map_tblTypeArticle">
+    <End Role="tblTypeArticle" Type="Self.tblTypeArticle" Multiplicity="0..1" />
+    <End Role="tblGroup_TypeArticle_Map" Type="Self.tblGroup_TypeArticle_Map" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblTypeArticle">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tblGroup_TypeArticle_Map">
+        <PropertyRef Name="ArticleTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblGroupNews_tblPicture">
+    <End Role="tblPicture" Type="Self.tblPicture" Multiplicity="0..1" />
+    <End Role="tblGroupArticle" Type="Self.tblGroupArticle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblPicture">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tblGroupArticle">
+        <PropertyRef Name="PictureID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblGroupOfService_tblService">
+    <End Role="tblService" Type="Self.tblService" Multiplicity="0..1" />
+    <End Role="tblGroupOfService" Type="Self.tblGroupOfService" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblService">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblGroupOfService">
+        <PropertyRef Name="ServiceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblServiceDetail_tblGroupOfService">
+    <End Role="tblGroupOfService" Type="Self.tblGroupOfService" Multiplicity="0..1" />
+    <End Role="tblServiceDetail" Type="Self.tblServiceDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblGroupOfService">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblServiceDetail">
+        <PropertyRef Name="GroupId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblGroupTypeArticle_tblPicture">
+    <End Role="tblPicture" Type="Self.tblPicture" Multiplicity="0..1" />
+    <End Role="tblGroupTypeArticle" Type="Self.tblGroupTypeArticle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblPicture">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tblGroupTypeArticle">
+        <PropertyRef Name="PictureID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblLayoutContent_tblPicture">
+    <End Role="tblPicture" Type="Self.tblPicture" Multiplicity="0..1" />
+    <End Role="tblLayoutContent" Type="Self.tblLayoutContent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblPicture">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tblLayoutContent">
+        <PropertyRef Name="PictureID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblManufacturer_tblPicture">
+    <End Role="tblPicture" Type="Self.tblPicture" Multiplicity="0..1" />
+    <End Role="tblManufacturer" Type="Self.tblManufacturer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblPicture">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tblManufacturer">
+        <PropertyRef Name="PictureID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblProduct_tblManufacturer">
+    <End Role="tblManufacturer" Type="Self.tblManufacturer" Multiplicity="0..1" />
+    <End Role="tblProduct" Type="Self.tblProduct" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblManufacturer">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tblProduct">
+        <PropertyRef Name="Manufacturer" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblMenu_tblMenu">
+    <End Role="tblMenu" Type="Self.tblMenu" Multiplicity="0..1" />
+    <End Role="tblMenu1" Type="Self.tblMenu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblMenu">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tblMenu1">
+        <PropertyRef Name="Parent" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblOrder_Shipping_tblOrder">
+    <End Role="tblOrder" Type="Self.tblOrder" Multiplicity="0..1" />
+    <End Role="tblOrder_Shipping" Type="Self.tblOrder_Shipping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblOrder">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tblOrder_Shipping">
+        <PropertyRef Name="OrderID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblOrder_tblOrder_Status">
+    <End Role="tblOrder_Status" Type="Self.tblOrder_Status" Multiplicity="0..1" />
+    <End Role="tblOrder" Type="Self.tblOrder" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblOrder_Status">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tblOrder">
+        <PropertyRef Name="OrderStatusID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblOrderDetail_tblOrder">
+    <End Role="tblOrder" Type="Self.tblOrder" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="tblOrderDetail" Type="Self.tblOrderDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblOrder">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tblOrderDetail">
+        <PropertyRef Name="OrderID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblOrderDetail_tblProduct">
+    <End Role="tblProduct" Type="Self.tblProduct" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="tblOrderDetail" Type="Self.tblOrderDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblProduct">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tblOrderDetail">
+        <PropertyRef Name="ProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblOrderDetail_tblProduct_Variant">
+    <End Role="tblProduct_Variant" Type="Self.tblProduct_Variant" Multiplicity="0..1" />
+    <End Role="tblOrderDetail" Type="Self.tblOrderDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblProduct_Variant">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tblOrderDetail">
+        <PropertyRef Name="ProductVariantID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblPage_tblPage">
+    <End Role="tblPage" Type="Self.tblPage" Multiplicity="0..1" />
+    <End Role="tblPage1" Type="Self.tblPage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblPage">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tblPage1">
+        <PropertyRef Name="Parent" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblImage_tblTypeImage">
+    <End Role="tblTypePicture" Type="Self.tblTypePicture" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="tblPicture" Type="Self.tblPicture" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblTypePicture">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tblPicture">
+        <PropertyRef Name="TypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblProduct_tblPicture">
+    <End Role="tblPicture" Type="Self.tblPicture" Multiplicity="0..1" />
+    <End Role="tblProduct" Type="Self.tblProduct" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblPicture">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tblProduct">
+        <PropertyRef Name="PictureID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblProductLabel_tblPicture">
+    <End Role="tblPicture" Type="Self.tblPicture" Multiplicity="0..1" />
+    <End Role="tblProductLabel" Type="Self.tblProductLabel" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblPicture">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tblProductLabel">
+        <PropertyRef Name="PictureID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblService_tblPicture">
+    <End Role="tblPicture" Type="Self.tblPicture" Multiplicity="0..1" />
+    <End Role="tblService" Type="Self.tblService" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblPicture">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tblService">
+        <PropertyRef Name="PictureId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblTypeArticle_tblPicture">
+    <End Role="tblPicture" Type="Self.tblPicture" Multiplicity="0..1" />
+    <End Role="tblTypeArticle" Type="Self.tblTypeArticle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblPicture">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tblTypeArticle">
+        <PropertyRef Name="PictureID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblTypeFile_tblPicture">
+    <End Role="tblPicture" Type="Self.tblPicture" Multiplicity="0..1" />
+    <End Role="tblTypeFile" Type="Self.tblTypeFile" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblPicture">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tblTypeFile">
+        <PropertyRef Name="PictureID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblTypeImage_tblPicture">
+    <End Role="tblPicture" Type="Self.tblPicture" Multiplicity="0..1" />
+    <End Role="tblTypePicture" Type="Self.tblTypePicture" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblPicture">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tblTypePicture">
+        <PropertyRef Name="PictureID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblTypeProduct_tblPicture">
+    <End Role="tblPicture" Type="Self.tblPicture" Multiplicity="0..1" />
+    <End Role="tblTypeProduct" Type="Self.tblTypeProduct" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblPicture">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tblTypeProduct">
+        <PropertyRef Name="PictureID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblTypeVideo_tblPicture">
+    <End Role="tblPicture" Type="Self.tblPicture" Multiplicity="0..1" />
+    <End Role="tblTypeVideo" Type="Self.tblTypeVideo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblPicture">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tblTypeVideo">
+        <PropertyRef Name="PictureID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblVideo_tblPicture">
+    <End Role="tblPicture" Type="Self.tblPicture" Multiplicity="0..1" />
+    <End Role="tblVideo" Type="Self.tblVideo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblPicture">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tblVideo">
+        <PropertyRef Name="PictureID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblProduct_Attribute_Map_tblProduct">
+    <End Role="tblProduct" Type="Self.tblProduct" Multiplicity="0..1" />
+    <End Role="tblProduct_Attribute_Map" Type="Self.tblProduct_Attribute_Map" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblProduct">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tblProduct_Attribute_Map">
+        <PropertyRef Name="ProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblProduct_Status_Map_tblProduct">
+    <End Role="tblProduct" Type="Self.tblProduct" Multiplicity="0..1" />
+    <End Role="tblProduct_Status_Map" Type="Self.tblProduct_Status_Map" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblProduct">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tblProduct_Status_Map">
+        <PropertyRef Name="ProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblProduct_tblTypeProduct">
+    <End Role="tblTypeProduct" Type="Self.tblTypeProduct" Multiplicity="0..1" />
+    <End Role="tblProduct" Type="Self.tblProduct" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblTypeProduct">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tblProduct">
+        <PropertyRef Name="TypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblProduct_Variant_tblProduct">
+    <End Role="tblProduct" Type="Self.tblProduct" Multiplicity="0..1" />
+    <End Role="tblProduct_Variant" Type="Self.tblProduct_Variant" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblProduct">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tblProduct_Variant">
+        <PropertyRef Name="ProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblProduct_Attribute_Map_tblProductAttribute">
+    <End Role="tblProductAttribute" Type="Self.tblProductAttribute" Multiplicity="0..1" />
+    <End Role="tblProduct_Attribute_Map" Type="Self.tblProduct_Attribute_Map" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblProductAttribute">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tblProduct_Attribute_Map">
+        <PropertyRef Name="AttributeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblProduct_Status_Map_tblProductStatus">
+    <End Role="tblProductStatus" Type="Self.tblProductStatus" Multiplicity="0..1" />
+    <End Role="tblProduct_Status_Map" Type="Self.tblProduct_Status_Map" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblProductStatus">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tblProduct_Status_Map">
+        <PropertyRef Name="ProductStatusID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblProductAttribute_tblProductGroupAttribute">
+    <End Role="tblProductGroupAttribute" Type="Self.tblProductGroupAttribute" Multiplicity="0..1" />
+    <End Role="tblProductAttribute" Type="Self.tblProductAttribute" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblProductGroupAttribute">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tblProductAttribute">
+        <PropertyRef Name="GroupID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblProductFilter_tblProductFilter">
+    <End Role="tblProductFilter" Type="Self.tblProductFilter" Multiplicity="0..1" />
+    <End Role="tblProductFilter1" Type="Self.tblProductFilter" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblProductFilter">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tblProductFilter1">
+        <PropertyRef Name="Parent" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblProductGroupAttribute_tblTypeProduct">
+    <End Role="tblTypeProduct" Type="Self.tblTypeProduct" Multiplicity="0..1" />
+    <End Role="tblProductGroupAttribute" Type="Self.tblProductGroupAttribute" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblTypeProduct">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tblProductGroupAttribute">
+        <PropertyRef Name="ProductTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblProductType_Group_Map_tblProductTypeGroup">
+    <End Role="tblProductTypeGroup" Type="Self.tblProductTypeGroup" Multiplicity="0..1" />
+    <End Role="tblProductType_Group_Map" Type="Self.tblProductType_Group_Map" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblProductTypeGroup">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tblProductType_Group_Map">
+        <PropertyRef Name="GroupTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblProductType_Group_Map_tblTypeProduct">
+    <End Role="tblTypeProduct" Type="Self.tblTypeProduct" Multiplicity="0..1" />
+    <End Role="tblProductType_Group_Map" Type="Self.tblProductType_Group_Map" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblTypeProduct">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tblProductType_Group_Map">
+        <PropertyRef Name="ProductTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblReceiveInfo_tblReceiveInfoGroup">
+    <End Role="tblReceiveInfoGroup" Type="Self.tblReceiveInfoGroup" Multiplicity="0..1" />
+    <End Role="tblReceiveInfo" Type="Self.tblReceiveInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblReceiveInfoGroup">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tblReceiveInfo">
+        <PropertyRef Name="GroupID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblStepOfService_tblService">
+    <End Role="tblService" Type="Self.tblService" Multiplicity="0..1" />
+    <End Role="tblStepOfService" Type="Self.tblStepOfService" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblService">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblStepOfService">
+        <PropertyRef Name="ServiceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblSupport_tblTypeSupport">
+    <End Role="tblTypeSupport" Type="Self.tblTypeSupport" Multiplicity="0..1" />
+    <End Role="tblSupport" Type="Self.tblSupport" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblTypeSupport">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tblSupport">
+        <PropertyRef Name="TypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblTypeArticle_tblTypeArticle">
+    <End Role="tblTypeArticle" Type="Self.tblTypeArticle" Multiplicity="0..1" />
+    <End Role="tblTypeArticle1" Type="Self.tblTypeArticle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblTypeArticle">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tblTypeArticle1">
+        <PropertyRef Name="Parent" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblTypeFile_tblTypeFile">
+    <End Role="tblTypeFile" Type="Self.tblTypeFile" Multiplicity="0..1" />
+    <End Role="tblTypeFile1" Type="Self.tblTypeFile" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblTypeFile">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tblTypeFile1">
+        <PropertyRef Name="Parent" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblTypeImage_tblTypeImage">
+    <End Role="tblTypePicture" Type="Self.tblTypePicture" Multiplicity="0..1" />
+    <End Role="tblTypePicture1" Type="Self.tblTypePicture" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblTypePicture">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tblTypePicture1">
+        <PropertyRef Name="Parent" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblTypeProduct_tblTypeProduct1">
+    <End Role="tblTypeProduct" Type="Self.tblTypeProduct" Multiplicity="0..1" />
+    <End Role="tblTypeProduct1" Type="Self.tblTypeProduct" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblTypeProduct">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tblTypeProduct1">
+        <PropertyRef Name="Parent" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblTypeVideo_tblTypeVideo">
+    <End Role="tblTypeVideo" Type="Self.tblTypeVideo" Multiplicity="0..1" />
+    <End Role="tblTypeVideo1" Type="Self.tblTypeVideo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblTypeVideo">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tblTypeVideo1">
+        <PropertyRef Name="Parent" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblVideo_tblTypeVideo">
+    <End Role="tblTypeVideo" Type="Self.tblTypeVideo" Multiplicity="0..1" />
+    <End Role="tblVideo" Type="Self.tblVideo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblTypeVideo">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tblVideo">
+        <PropertyRef Name="TypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="AspNetUserRoles">
+    <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="*" />
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="*" />
+  </Association>
+  <Association Name="tblArticle_Picture_Map">
+    <End Role="tblArticle" Type="Self.tblArticle" Multiplicity="*" />
+    <End Role="tblPicture" Type="Self.tblPicture" Multiplicity="*" />
+  </Association>
+  <Association Name="tblPage_Role">
+    <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="*" />
+    <End Role="tblPage" Type="Self.tblPage" Multiplicity="*" />
+  </Association>
+  <Association Name="tblProduct_File_Map">
+    <End Role="tblFile" Type="Self.tblFile" Multiplicity="*" />
+    <End Role="tblProduct" Type="Self.tblProduct" Multiplicity="*" />
+  </Association>
+  <Association Name="tblProduct_Filter_Map">
+    <End Role="tblProduct" Type="Self.tblProduct" Multiplicity="*" />
+    <End Role="tblProductFilter" Type="Self.tblProductFilter" Multiplicity="*" />
+  </Association>
+  <Association Name="tblProduct_Label_Map">
+    <End Role="tblProduct" Type="Self.tblProduct" Multiplicity="*" />
+    <End Role="tblProductLabel" Type="Self.tblProductLabel" Multiplicity="*" />
+  </Association>
+  <Association Name="tblProduct_Picture_Map">
+    <End Role="tblPicture" Type="Self.tblPicture" Multiplicity="*" />
+    <End Role="tblProduct" Type="Self.tblProduct" Multiplicity="*" />
+  </Association>
+  <Association Name="tblStepOfService_Picture_Map">
+    <End Role="tblStepOfService" Type="Self.tblStepOfService" Multiplicity="*" />
+    <End Role="tblPicture" Type="Self.tblPicture" Multiplicity="*" />
+  </Association>
+  <Association Name="tblTypeProduct_Picture_Map">
+    <End Role="tblPicture" Type="Self.tblPicture" Multiplicity="*" />
+    <End Role="tblTypeProduct" Type="Self.tblTypeProduct" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="Entities365" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
+    <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" />
+    <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" />
+    <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" />
+    <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="tblAdverties_Picture_Map" EntityType="Self.tblAdverties_Picture_Map" />
+    <EntitySet Name="tblAdvertise" EntityType="Self.tblAdvertise" />
+    <EntitySet Name="tblArticle" EntityType="Self.tblArticle" />
+    <EntitySet Name="tblBooking" EntityType="Self.tblBooking" />
+    <EntitySet Name="tblBookingType" EntityType="Self.tblBookingType" />
+    <EntitySet Name="tblComment" EntityType="Self.tblComment" />
+    <EntitySet Name="tblContact" EntityType="Self.tblContact" />
+    <EntitySet Name="tblCustomer" EntityType="Self.tblCustomer" />
+    <EntitySet Name="tblDetail" EntityType="Self.tblDetail" />
+    <EntitySet Name="tblDistributor" EntityType="Self.tblDistributor" />
+    <EntitySet Name="tblDomain" EntityType="Self.tblDomain" />
+    <EntitySet Name="tblFile" EntityType="Self.tblFile" />
+    <EntitySet Name="tblGroup_Article_Map" EntityType="Self.tblGroup_Article_Map" />
+    <EntitySet Name="tblGroup_TypeArticle_Map" EntityType="Self.tblGroup_TypeArticle_Map" />
+    <EntitySet Name="tblGroupArticle" EntityType="Self.tblGroupArticle" />
+    <EntitySet Name="tblGroupOfService" EntityType="Self.tblGroupOfService" />
+    <EntitySet Name="tblGroupTypeArticle" EntityType="Self.tblGroupTypeArticle" />
+    <EntitySet Name="tblLanguage" EntityType="Self.tblLanguage" />
+    <EntitySet Name="tblLayoutContent" EntityType="Self.tblLayoutContent" />
+    <EntitySet Name="tblManufacturer" EntityType="Self.tblManufacturer" />
+    <EntitySet Name="tblMenu" EntityType="Self.tblMenu" />
+    <EntitySet Name="tblOrder" EntityType="Self.tblOrder" />
+    <EntitySet Name="tblOrder_Shipping" EntityType="Self.tblOrder_Shipping" />
+    <EntitySet Name="tblOrder_Status" EntityType="Self.tblOrder_Status" />
+    <EntitySet Name="tblOrderDetail" EntityType="Self.tblOrderDetail" />
+    <EntitySet Name="tblPage" EntityType="Self.tblPage" />
+    <EntitySet Name="tblPicture" EntityType="Self.tblPicture" />
+    <EntitySet Name="tblProduct" EntityType="Self.tblProduct" />
+    <EntitySet Name="tblProduct_Attribute_Map" EntityType="Self.tblProduct_Attribute_Map" />
+    <EntitySet Name="tblProduct_Status_Map" EntityType="Self.tblProduct_Status_Map" />
+    <EntitySet Name="tblProduct_Variant" EntityType="Self.tblProduct_Variant" />
+    <EntitySet Name="tblProductAttribute" EntityType="Self.tblProductAttribute" />
+    <EntitySet Name="tblProductFilter" EntityType="Self.tblProductFilter" />
+    <EntitySet Name="tblProductGroupAttribute" EntityType="Self.tblProductGroupAttribute" />
+    <EntitySet Name="tblProductLabel" EntityType="Self.tblProductLabel" />
+    <EntitySet Name="tblProductStatus" EntityType="Self.tblProductStatus" />
+    <EntitySet Name="tblProductType_Group_Map" EntityType="Self.tblProductType_Group_Map" />
+    <EntitySet Name="tblProductTypeGroup" EntityType="Self.tblProductTypeGroup" />
+    <EntitySet Name="tblReceiveInfo" EntityType="Self.tblReceiveInfo" />
+    <EntitySet Name="tblReceiveInfoGroup" EntityType="Self.tblReceiveInfoGroup" />
+    <EntitySet Name="tblService" EntityType="Self.tblService" />
+    <EntitySet Name="tblServiceDetail" EntityType="Self.tblServiceDetail" />
+    <EntitySet Name="tblStepOfService" EntityType="Self.tblStepOfService" />
+    <EntitySet Name="tblSupport" EntityType="Self.tblSupport" />
+    <EntitySet Name="tblTypeArticle" EntityType="Self.tblTypeArticle" />
+    <EntitySet Name="tblTypeFile" EntityType="Self.tblTypeFile" />
+    <EntitySet Name="tblTypeLog" EntityType="Self.tblTypeLog" />
+    <EntitySet Name="tblTypePicture" EntityType="Self.tblTypePicture" />
+    <EntitySet Name="tblTypeProduct" EntityType="Self.tblTypeProduct" />
+    <EntitySet Name="tblTypeSupport" EntityType="Self.tblTypeSupport" />
+    <EntitySet Name="tblTypeVideo" EntityType="Self.tblTypeVideo" />
+    <EntitySet Name="tblVideo" EntityType="Self.tblVideo" />
+    <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblAdverties_Picture_tblAdvertise" Association="Self.FK_tblAdverties_Picture_tblAdvertise">
+      <End Role="tblAdvertise" EntitySet="tblAdvertise" />
+      <End Role="tblAdverties_Picture_Map" EntitySet="tblAdverties_Picture_Map" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblAdverties_Picture_tblPicture" Association="Self.FK_tblAdverties_Picture_tblPicture">
+      <End Role="tblPicture" EntitySet="tblPicture" />
+      <End Role="tblAdverties_Picture_Map" EntitySet="tblAdverties_Picture_Map" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblArticle_tblPicture" Association="Self.FK_tblArticle_tblPicture">
+      <End Role="tblPicture" EntitySet="tblPicture" />
+      <End Role="tblArticle" EntitySet="tblArticle" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblGroup_News_Map_tblNews" Association="Self.FK_tblGroup_News_Map_tblNews">
+      <End Role="tblArticle" EntitySet="tblArticle" />
+      <End Role="tblGroup_Article_Map" EntitySet="tblGroup_Article_Map" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblNews_tblTypeNews" Association="Self.FK_tblNews_tblTypeNews">
+      <End Role="tblTypeArticle" EntitySet="tblTypeArticle" />
+      <End Role="tblArticle" EntitySet="tblArticle" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblBooking_tblBookingType" Association="Self.FK_tblBooking_tblBookingType">
+      <End Role="tblBookingType" EntitySet="tblBookingType" />
+      <End Role="tblBooking" EntitySet="tblBooking" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblComment_tblAccount" Association="Self.FK_tblComment_tblAccount">
+      <End Role="tblCustomer" EntitySet="tblCustomer" />
+      <End Role="tblComment" EntitySet="tblComment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblComment_tblProduct" Association="Self.FK_tblComment_tblProduct">
+      <End Role="tblProduct" EntitySet="tblProduct" />
+      <End Role="tblComment" EntitySet="tblComment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblCustomer_tblPicture" Association="Self.FK_tblCustomer_tblPicture">
+      <End Role="tblPicture" EntitySet="tblPicture" />
+      <End Role="tblCustomer" EntitySet="tblCustomer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblOrder_tblCustomer" Association="Self.FK_tblOrder_tblCustomer">
+      <End Role="tblCustomer" EntitySet="tblCustomer" />
+      <End Role="tblOrder" EntitySet="tblOrder" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblDistributor_tblPicture" Association="Self.FK_tblDistributor_tblPicture">
+      <End Role="tblPicture" EntitySet="tblPicture" />
+      <End Role="tblDistributor" EntitySet="tblDistributor" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblProduct_tblDistributor" Association="Self.FK_tblProduct_tblDistributor">
+      <End Role="tblDistributor" EntitySet="tblDistributor" />
+      <End Role="tblProduct" EntitySet="tblProduct" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblFile_tblPicture" Association="Self.FK_tblFile_tblPicture">
+      <End Role="tblPicture" EntitySet="tblPicture" />
+      <End Role="tblFile" EntitySet="tblFile" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblFile_tblTypeFile" Association="Self.FK_tblFile_tblTypeFile">
+      <End Role="tblTypeFile" EntitySet="tblTypeFile" />
+      <End Role="tblFile" EntitySet="tblFile" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblVideo_tblFile" Association="Self.FK_tblVideo_tblFile">
+      <End Role="tblFile" EntitySet="tblFile" />
+      <End Role="tblVideo" EntitySet="tblVideo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblGroup_News_Map_tblGroupNews" Association="Self.FK_tblGroup_News_Map_tblGroupNews">
+      <End Role="tblGroupArticle" EntitySet="tblGroupArticle" />
+      <End Role="tblGroup_Article_Map" EntitySet="tblGroup_Article_Map" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblGroup_TypeArticle_Map_tblGroupTypeArticle" Association="Self.FK_tblGroup_TypeArticle_Map_tblGroupTypeArticle">
+      <End Role="tblGroupTypeArticle" EntitySet="tblGroupTypeArticle" />
+      <End Role="tblGroup_TypeArticle_Map" EntitySet="tblGroup_TypeArticle_Map" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblGroup_TypeArticle_Map_tblTypeArticle" Association="Self.FK_tblGroup_TypeArticle_Map_tblTypeArticle">
+      <End Role="tblTypeArticle" EntitySet="tblTypeArticle" />
+      <End Role="tblGroup_TypeArticle_Map" EntitySet="tblGroup_TypeArticle_Map" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblGroupNews_tblPicture" Association="Self.FK_tblGroupNews_tblPicture">
+      <End Role="tblPicture" EntitySet="tblPicture" />
+      <End Role="tblGroupArticle" EntitySet="tblGroupArticle" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblGroupOfService_tblService" Association="Self.FK_tblGroupOfService_tblService">
+      <End Role="tblService" EntitySet="tblService" />
+      <End Role="tblGroupOfService" EntitySet="tblGroupOfService" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblServiceDetail_tblGroupOfService" Association="Self.FK_tblServiceDetail_tblGroupOfService">
+      <End Role="tblGroupOfService" EntitySet="tblGroupOfService" />
+      <End Role="tblServiceDetail" EntitySet="tblServiceDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblGroupTypeArticle_tblPicture" Association="Self.FK_tblGroupTypeArticle_tblPicture">
+      <End Role="tblPicture" EntitySet="tblPicture" />
+      <End Role="tblGroupTypeArticle" EntitySet="tblGroupTypeArticle" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblLayoutContent_tblPicture" Association="Self.FK_tblLayoutContent_tblPicture">
+      <End Role="tblPicture" EntitySet="tblPicture" />
+      <End Role="tblLayoutContent" EntitySet="tblLayoutContent" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblManufacturer_tblPicture" Association="Self.FK_tblManufacturer_tblPicture">
+      <End Role="tblPicture" EntitySet="tblPicture" />
+      <End Role="tblManufacturer" EntitySet="tblManufacturer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblProduct_tblManufacturer" Association="Self.FK_tblProduct_tblManufacturer">
+      <End Role="tblManufacturer" EntitySet="tblManufacturer" />
+      <End Role="tblProduct" EntitySet="tblProduct" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblMenu_tblMenu" Association="Self.FK_tblMenu_tblMenu">
+      <End Role="tblMenu" EntitySet="tblMenu" />
+      <End Role="tblMenu1" EntitySet="tblMenu" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblOrder_Shipping_tblOrder" Association="Self.FK_tblOrder_Shipping_tblOrder">
+      <End Role="tblOrder" EntitySet="tblOrder" />
+      <End Role="tblOrder_Shipping" EntitySet="tblOrder_Shipping" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblOrder_tblOrder_Status" Association="Self.FK_tblOrder_tblOrder_Status">
+      <End Role="tblOrder_Status" EntitySet="tblOrder_Status" />
+      <End Role="tblOrder" EntitySet="tblOrder" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblOrderDetail_tblOrder" Association="Self.FK_tblOrderDetail_tblOrder">
+      <End Role="tblOrder" EntitySet="tblOrder" />
+      <End Role="tblOrderDetail" EntitySet="tblOrderDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblOrderDetail_tblProduct" Association="Self.FK_tblOrderDetail_tblProduct">
+      <End Role="tblProduct" EntitySet="tblProduct" />
+      <End Role="tblOrderDetail" EntitySet="tblOrderDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblOrderDetail_tblProduct_Variant" Association="Self.FK_tblOrderDetail_tblProduct_Variant">
+      <End Role="tblProduct_Variant" EntitySet="tblProduct_Variant" />
+      <End Role="tblOrderDetail" EntitySet="tblOrderDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblPage_tblPage" Association="Self.FK_tblPage_tblPage">
+      <End Role="tblPage" EntitySet="tblPage" />
+      <End Role="tblPage1" EntitySet="tblPage" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblImage_tblTypeImage" Association="Self.FK_tblImage_tblTypeImage">
+      <End Role="tblTypePicture" EntitySet="tblTypePicture" />
+      <End Role="tblPicture" EntitySet="tblPicture" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblProduct_tblPicture" Association="Self.FK_tblProduct_tblPicture">
+      <End Role="tblPicture" EntitySet="tblPicture" />
+      <End Role="tblProduct" EntitySet="tblProduct" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblProductLabel_tblPicture" Association="Self.FK_tblProductLabel_tblPicture">
+      <End Role="tblPicture" EntitySet="tblPicture" />
+      <End Role="tblProductLabel" EntitySet="tblProductLabel" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblService_tblPicture" Association="Self.FK_tblService_tblPicture">
+      <End Role="tblPicture" EntitySet="tblPicture" />
+      <End Role="tblService" EntitySet="tblService" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblTypeArticle_tblPicture" Association="Self.FK_tblTypeArticle_tblPicture">
+      <End Role="tblPicture" EntitySet="tblPicture" />
+      <End Role="tblTypeArticle" EntitySet="tblTypeArticle" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblTypeFile_tblPicture" Association="Self.FK_tblTypeFile_tblPicture">
+      <End Role="tblPicture" EntitySet="tblPicture" />
+      <End Role="tblTypeFile" EntitySet="tblTypeFile" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblTypeImage_tblPicture" Association="Self.FK_tblTypeImage_tblPicture">
+      <End Role="tblPicture" EntitySet="tblPicture" />
+      <End Role="tblTypePicture" EntitySet="tblTypePicture" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblTypeProduct_tblPicture" Association="Self.FK_tblTypeProduct_tblPicture">
+      <End Role="tblPicture" EntitySet="tblPicture" />
+      <End Role="tblTypeProduct" EntitySet="tblTypeProduct" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblTypeVideo_tblPicture" Association="Self.FK_tblTypeVideo_tblPicture">
+      <End Role="tblPicture" EntitySet="tblPicture" />
+      <End Role="tblTypeVideo" EntitySet="tblTypeVideo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblVideo_tblPicture" Association="Self.FK_tblVideo_tblPicture">
+      <End Role="tblPicture" EntitySet="tblPicture" />
+      <End Role="tblVideo" EntitySet="tblVideo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblProduct_Attribute_Map_tblProduct" Association="Self.FK_tblProduct_Attribute_Map_tblProduct">
+      <End Role="tblProduct" EntitySet="tblProduct" />
+      <End Role="tblProduct_Attribute_Map" EntitySet="tblProduct_Attribute_Map" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblProduct_Status_Map_tblProduct" Association="Self.FK_tblProduct_Status_Map_tblProduct">
+      <End Role="tblProduct" EntitySet="tblProduct" />
+      <End Role="tblProduct_Status_Map" EntitySet="tblProduct_Status_Map" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblProduct_tblTypeProduct" Association="Self.FK_tblProduct_tblTypeProduct">
+      <End Role="tblTypeProduct" EntitySet="tblTypeProduct" />
+      <End Role="tblProduct" EntitySet="tblProduct" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblProduct_Variant_tblProduct" Association="Self.FK_tblProduct_Variant_tblProduct">
+      <End Role="tblProduct" EntitySet="tblProduct" />
+      <End Role="tblProduct_Variant" EntitySet="tblProduct_Variant" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblProduct_Attribute_Map_tblProductAttribute" Association="Self.FK_tblProduct_Attribute_Map_tblProductAttribute">
+      <End Role="tblProductAttribute" EntitySet="tblProductAttribute" />
+      <End Role="tblProduct_Attribute_Map" EntitySet="tblProduct_Attribute_Map" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblProduct_Status_Map_tblProductStatus" Association="Self.FK_tblProduct_Status_Map_tblProductStatus">
+      <End Role="tblProductStatus" EntitySet="tblProductStatus" />
+      <End Role="tblProduct_Status_Map" EntitySet="tblProduct_Status_Map" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblProductAttribute_tblProductGroupAttribute" Association="Self.FK_tblProductAttribute_tblProductGroupAttribute">
+      <End Role="tblProductGroupAttribute" EntitySet="tblProductGroupAttribute" />
+      <End Role="tblProductAttribute" EntitySet="tblProductAttribute" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblProductFilter_tblProductFilter" Association="Self.FK_tblProductFilter_tblProductFilter">
+      <End Role="tblProductFilter" EntitySet="tblProductFilter" />
+      <End Role="tblProductFilter1" EntitySet="tblProductFilter" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblProductGroupAttribute_tblTypeProduct" Association="Self.FK_tblProductGroupAttribute_tblTypeProduct">
+      <End Role="tblTypeProduct" EntitySet="tblTypeProduct" />
+      <End Role="tblProductGroupAttribute" EntitySet="tblProductGroupAttribute" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblProductType_Group_Map_tblProductTypeGroup" Association="Self.FK_tblProductType_Group_Map_tblProductTypeGroup">
+      <End Role="tblProductTypeGroup" EntitySet="tblProductTypeGroup" />
+      <End Role="tblProductType_Group_Map" EntitySet="tblProductType_Group_Map" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblProductType_Group_Map_tblTypeProduct" Association="Self.FK_tblProductType_Group_Map_tblTypeProduct">
+      <End Role="tblTypeProduct" EntitySet="tblTypeProduct" />
+      <End Role="tblProductType_Group_Map" EntitySet="tblProductType_Group_Map" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblReceiveInfo_tblReceiveInfoGroup" Association="Self.FK_tblReceiveInfo_tblReceiveInfoGroup">
+      <End Role="tblReceiveInfoGroup" EntitySet="tblReceiveInfoGroup" />
+      <End Role="tblReceiveInfo" EntitySet="tblReceiveInfo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblStepOfService_tblService" Association="Self.FK_tblStepOfService_tblService">
+      <End Role="tblService" EntitySet="tblService" />
+      <End Role="tblStepOfService" EntitySet="tblStepOfService" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblSupport_tblTypeSupport" Association="Self.FK_tblSupport_tblTypeSupport">
+      <End Role="tblTypeSupport" EntitySet="tblTypeSupport" />
+      <End Role="tblSupport" EntitySet="tblSupport" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblTypeArticle_tblTypeArticle" Association="Self.FK_tblTypeArticle_tblTypeArticle">
+      <End Role="tblTypeArticle" EntitySet="tblTypeArticle" />
+      <End Role="tblTypeArticle1" EntitySet="tblTypeArticle" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblTypeFile_tblTypeFile" Association="Self.FK_tblTypeFile_tblTypeFile">
+      <End Role="tblTypeFile" EntitySet="tblTypeFile" />
+      <End Role="tblTypeFile1" EntitySet="tblTypeFile" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblTypeImage_tblTypeImage" Association="Self.FK_tblTypeImage_tblTypeImage">
+      <End Role="tblTypePicture" EntitySet="tblTypePicture" />
+      <End Role="tblTypePicture1" EntitySet="tblTypePicture" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblTypeProduct_tblTypeProduct1" Association="Self.FK_tblTypeProduct_tblTypeProduct1">
+      <End Role="tblTypeProduct" EntitySet="tblTypeProduct" />
+      <End Role="tblTypeProduct1" EntitySet="tblTypeProduct" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblTypeVideo_tblTypeVideo" Association="Self.FK_tblTypeVideo_tblTypeVideo">
+      <End Role="tblTypeVideo" EntitySet="tblTypeVideo" />
+      <End Role="tblTypeVideo1" EntitySet="tblTypeVideo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblVideo_tblTypeVideo" Association="Self.FK_tblVideo_tblTypeVideo">
+      <End Role="tblTypeVideo" EntitySet="tblTypeVideo" />
+      <End Role="tblVideo" EntitySet="tblVideo" />
+    </AssociationSet>
+    <AssociationSet Name="AspNetUserRoles" Association="Self.AspNetUserRoles">
+      <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+    </AssociationSet>
+    <AssociationSet Name="tblArticle_Picture_Map" Association="Self.tblArticle_Picture_Map">
+      <End Role="tblArticle" EntitySet="tblArticle" />
+      <End Role="tblPicture" EntitySet="tblPicture" />
+    </AssociationSet>
+    <AssociationSet Name="tblPage_Role" Association="Self.tblPage_Role">
+      <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+      <End Role="tblPage" EntitySet="tblPage" />
+    </AssociationSet>
+    <AssociationSet Name="tblProduct_File_Map" Association="Self.tblProduct_File_Map">
+      <End Role="tblFile" EntitySet="tblFile" />
+      <End Role="tblProduct" EntitySet="tblProduct" />
+    </AssociationSet>
+    <AssociationSet Name="tblProduct_Filter_Map" Association="Self.tblProduct_Filter_Map">
+      <End Role="tblProduct" EntitySet="tblProduct" />
+      <End Role="tblProductFilter" EntitySet="tblProductFilter" />
+    </AssociationSet>
+    <AssociationSet Name="tblProduct_Label_Map" Association="Self.tblProduct_Label_Map">
+      <End Role="tblProduct" EntitySet="tblProduct" />
+      <End Role="tblProductLabel" EntitySet="tblProductLabel" />
+    </AssociationSet>
+    <AssociationSet Name="tblProduct_Picture_Map" Association="Self.tblProduct_Picture_Map">
+      <End Role="tblPicture" EntitySet="tblPicture" />
+      <End Role="tblProduct" EntitySet="tblProduct" />
+    </AssociationSet>
+    <AssociationSet Name="tblStepOfService_Picture_Map" Association="Self.tblStepOfService_Picture_Map">
+      <End Role="tblStepOfService" EntitySet="tblStepOfService" />
+      <End Role="tblPicture" EntitySet="tblPicture" />
+    </AssociationSet>
+    <AssociationSet Name="tblTypeProduct_Picture_Map" Association="Self.tblTypeProduct_Picture_Map">
+      <End Role="tblPicture" EntitySet="tblPicture" />
+      <End Role="tblTypeProduct" EntitySet="tblTypeProduct" />
+    </AssociationSet>
+    <FunctionImport Name="SplitString" IsComposable="true" ReturnType="Collection(web365db.SplitString_Result)">
+      <Parameter Name="stringToSplit" Mode="In" Type="String" />
+      <Parameter Name="key" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SplitStringWithOrder" IsComposable="true" ReturnType="Collection(web365db.SplitStringWithOrder_Result)">
+      <Parameter Name="string" Mode="In" Type="String" />
+      <Parameter Name="delimiter" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PRC_AllChildTypeNews" ReturnType="Collection(web365db.PRC_AllChildTypeNews_Result)">
+      <Parameter Name="CategoryAscii" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PRC_AllChildTypeNewsByArrID" ReturnType="Collection(web365db.PRC_AllChildTypeNewsByArrID_Result)">
+      <Parameter Name="ListID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PRC_AllChildTypePicureByArrID" ReturnType="Collection(web365db.PRC_AllChildTypePicureByArrID_Result)">
+      <Parameter Name="ListID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PRC_File_GetFileByType">
+      <Parameter Name="TypeID" Mode="In" Type="Int32" />
+      <Parameter Name="TypeAscii" Mode="In" Type="String" />
+      <Parameter Name="Skip" Mode="In" Type="Int32" />
+      <Parameter Name="Top" Mode="In" Type="Int32" />
+      <Parameter Name="Total" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="PRC_FilterByParentAscii" ReturnType="Collection(web365db.PRC_FilterByParentAscii_Result)">
+      <Parameter Name="Ascii" Mode="In" Type="String" />
+      <Parameter Name="LanguageId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="PRC_FilterByParentId" ReturnType="Collection(web365db.PRC_FilterByParentId_Result)">
+      <Parameter Name="ListID" Mode="In" Type="String" />
+      <Parameter Name="LanguageId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="PRC_GetListNewsByType">
+      <Parameter Name="TypeID" Mode="In" Type="Int32" />
+      <Parameter Name="TypeAscii" Mode="In" Type="String" />
+      <Parameter Name="Language" Mode="In" Type="Int32" />
+      <Parameter Name="CurrentRecord" Mode="In" Type="Int32" />
+      <Parameter Name="PageSize" Mode="In" Type="Int32" />
+      <Parameter Name="Total" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="PRC_GetListProductByType">
+      <Parameter Name="TypeID" Mode="In" Type="Int32" />
+      <Parameter Name="TypeAscii" Mode="In" Type="String" />
+      <Parameter Name="Language" Mode="In" Type="Int32" />
+      <Parameter Name="CurrentRecord" Mode="In" Type="Int32" />
+      <Parameter Name="PageSize" Mode="In" Type="Int32" />
+      <Parameter Name="Total" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="PRC_GetMenu" ReturnType="Collection(web365db.PRC_GetMenu_Result)">
+      <Parameter Name="UserId" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PRC_GetProducts" ReturnType="Collection(web365db.PRC_GetProducts_Result)">
+      <Parameter Name="Page" Mode="In" Type="Int32" />
+      <Parameter Name="PageSize" Mode="In" Type="Int32" />
+      <Parameter Name="OrderBy" Mode="In" Type="Int32" />
+      <Parameter Name="Total" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="PRC_InsertFilterForProduct">
+      <Parameter Name="ProductId" Mode="In" Type="Int32" />
+      <Parameter Name="FilterId" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PRC_InsertLabelForProduct">
+      <Parameter Name="ProductId" Mode="In" Type="Int32" />
+      <Parameter Name="LabelId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="PRC_InsertPageForRole">
+      <Parameter Name="RoleId" Mode="In" Type="String" />
+      <Parameter Name="PageId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="PRC_InsertRoleForUser">
+      <Parameter Name="UserId" Mode="In" Type="String" />
+      <Parameter Name="RoleId" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PRC_MenuByParentId" ReturnType="Collection(web365db.PRC_MenuByParentId_Result)">
+      <Parameter Name="ListID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PRC_Picture_GetPictureByType">
+      <Parameter Name="TypeID" Mode="In" Type="Int32" />
+      <Parameter Name="TypeAscii" Mode="In" Type="String" />
+      <Parameter Name="Skip" Mode="In" Type="Int32" />
+      <Parameter Name="Top" Mode="In" Type="Int32" />
+      <Parameter Name="Total" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="PRC_Product_GetAllChildTypeByParentID" ReturnType="Collection(web365db.PRC_Product_GetAllChildTypeByParentID_Result)">
+      <Parameter Name="Parent" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="PRC_Product_GetProductByType">
+      <Parameter Name="TypeID" Mode="In" Type="Int32" />
+      <Parameter Name="TypeAscii" Mode="In" Type="String" />
+      <Parameter Name="Skip" Mode="In" Type="Int32" />
+      <Parameter Name="Top" Mode="In" Type="Int32" />
+      <Parameter Name="Total" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="PRC_ResetFileProduct">
+      <Parameter Name="ProductID" Mode="In" Type="Int32" />
+      <Parameter Name="ListID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PRC_ResetPictureArticle">
+      <Parameter Name="ArticleID" Mode="In" Type="Int32" />
+      <Parameter Name="ListID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PRC_ResetPictureProduct">
+      <Parameter Name="ProductID" Mode="In" Type="Int32" />
+      <Parameter Name="ListID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PRC_ResetPictureProductType">
+      <Parameter Name="TypeID" Mode="In" Type="Int32" />
+      <Parameter Name="ListID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PRC_ResetPictureStepService">
+      <Parameter Name="ServiceID" Mode="In" Type="Int32" />
+      <Parameter Name="ListID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(web365db.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(web365db.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+  </EntityContainer>
+  <ComplexType Name="PRC_AllChildTypeNews_Result">
+    <Property Type="Int32" Name="ID" Nullable="true" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="NameAscii" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="SEOTitle" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="SEODescription" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="SEOKeyword" Nullable="true" MaxLength="255" />
+    <Property Type="Int32" Name="Parent" Nullable="true" />
+    <Property Type="Int32" Name="Number" Nullable="true" />
+    <Property Type="Boolean" Name="IsShow" Nullable="true" />
+    <Property Type="Boolean" Name="IsDeleted" Nullable="true" />
+    <Property Type="Int32" Name="PictureID" Nullable="true" />
+    <Property Type="String" Name="UrlPicture" Nullable="true" MaxLength="255" />
+  </ComplexType>
+  <ComplexType Name="PRC_AllChildTypeNewsByArrID_Result">
+    <Property Type="Int32" Name="ID" Nullable="true" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="NameAscii" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="SEOTitle" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="SEODescription" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="SEOKeyword" Nullable="true" MaxLength="255" />
+    <Property Type="Int32" Name="Parent" Nullable="true" />
+    <Property Type="Int32" Name="PictureID" Nullable="true" />
+    <Property Type="Int32" Name="Number" Nullable="true" />
+    <Property Type="Boolean" Name="IsShow" Nullable="true" />
+    <Property Type="Boolean" Name="IsDeleted" Nullable="true" />
+    <Property Type="Int32" Name="ID1" Nullable="true" />
+    <Property Type="String" Name="Name1" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="FileName" Nullable="true" MaxLength="255" />
+    <Property Type="Int32" Name="TypeID" Nullable="true" />
+    <Property Type="String" Name="Summary" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="Alt" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="Link" Nullable="true" MaxLength="255" />
+    <Property Type="Int64" Name="Size" Nullable="true" />
+    <Property Type="DateTime" Name="DateCreated" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="DateUpdated" Nullable="true" Precision="23" />
+    <Property Type="String" Name="CreatedBy" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="UpdatedBy" Nullable="true" MaxLength="255" />
+    <Property Type="Boolean" Name="IsShow1" Nullable="true" />
+    <Property Type="Boolean" Name="IsDeleted1" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="PRC_AllChildTypePicureByArrID_Result">
+    <Property Type="Int32" Name="ID" Nullable="true" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="NameAscii" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="SEOTitle" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="SEODescription" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="SEOKeyword" Nullable="true" MaxLength="255" />
+    <Property Type="Int32" Name="Parent" Nullable="true" />
+    <Property Type="Int32" Name="Number" Nullable="true" />
+    <Property Type="Boolean" Name="IsShow" Nullable="true" />
+    <Property Type="Boolean" Name="IsDeleted" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="PRC_FilterByParentAscii_Result">
+    <Property Type="Int32" Name="ID" Nullable="true" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="NameAscii" Nullable="true" MaxLength="255" />
+    <Property Type="Int32" Name="Parent" Nullable="true" />
+    <Property Type="Int32" Name="Number" Nullable="true" />
+    <Property Type="Boolean" Name="IsShow" Nullable="true" />
+    <Property Type="Boolean" Name="IsDeleted" Nullable="true" />
+    <Property Type="String" Name="ParentName" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="ParentAscii" Nullable="true" MaxLength="255" />
+  </ComplexType>
+  <ComplexType Name="PRC_FilterByParentId_Result">
+    <Property Type="Int32" Name="ID" Nullable="true" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="NameAscii" Nullable="true" MaxLength="255" />
+    <Property Type="Int32" Name="Parent" Nullable="true" />
+    <Property Type="Int32" Name="Number" Nullable="true" />
+    <Property Type="Boolean" Name="IsShow" Nullable="true" />
+    <Property Type="Boolean" Name="IsDeleted" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="PRC_GetMenu_Result">
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="Link" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="ClassAtrtibute" Nullable="true" MaxLength="255" />
+    <Property Type="Int32" Name="Parent" Nullable="true" />
+    <Property Type="Boolean" Name="HasChild" Nullable="true" />
+    <Property Type="Int32" Name="Number" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="PRC_GetProducts_Result">
+    <Property Type="Int64" Name="RowNumber" Nullable="true" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="NameAscii" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="Serial" Nullable="true" MaxLength="255" />
+    <Property Type="Int32" Name="TypeID" Nullable="true" />
+    <Property Type="Int32" Name="Manufacturer" Nullable="true" />
+    <Property Type="Int32" Name="Distributor" Nullable="true" />
+    <Property Type="Decimal" Name="Price" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="Int32" Name="Quantity" Nullable="true" />
+    <Property Type="Int32" Name="PictureID" Nullable="true" />
+    <Property Type="String" Name="HighLights" Nullable="true" MaxLength="4000" />
+    <Property Type="String" Name="Summary" Nullable="true" MaxLength="4000" />
+    <Property Type="String" Name="Detail" Nullable="true" MaxLength="Max" />
+    <Property Type="Int32" Name="Number" Nullable="true" />
+    <Property Type="Int32" Name="Viewed" Nullable="true" />
+    <Property Type="String" Name="SEOTitle" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="SEODescription" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="SEOKeyword" Nullable="true" MaxLength="255" />
+    <Property Type="DateTime" Name="DateCreated" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="DateUpdated" Nullable="true" Precision="23" />
+    <Property Type="String" Name="CreateBy" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="UpdateBy" Nullable="true" MaxLength="255" />
+    <Property Type="Boolean" Name="IsShow" Nullable="true" />
+    <Property Type="Boolean" Name="IsDeleted" Nullable="true" />
+    <Property Type="String" Name="UrlPicture" Nullable="true" MaxLength="255" />
+  </ComplexType>
+  <ComplexType Name="PRC_MenuByParentId_Result">
+    <Property Type="Int32" Name="ID" Nullable="true" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="NameAscii" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="Link" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="Target" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="CssClass" Nullable="true" MaxLength="255" />
+    <Property Type="Int32" Name="Parent" Nullable="true" />
+    <Property Type="Int32" Name="Number" Nullable="true" />
+    <Property Type="Boolean" Name="IsShow" Nullable="true" />
+    <Property Type="Boolean" Name="IsDeleted" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="PRC_Product_GetAllChildTypeByParentID_Result">
+    <Property Type="Int32" Name="ID" Nullable="true" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="NameAscii" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="SEOTitle" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="SEODescription" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="SEOKeyword" Nullable="true" MaxLength="255" />
+    <Property Type="Int32" Name="Parent" Nullable="true" />
+    <Property Type="Int32" Name="Number" Nullable="true" />
+    <Property Type="Boolean" Name="IsShow" Nullable="true" />
+    <Property Type="Boolean" Name="IsDeleted" Nullable="true" />
+    <Property Type="Int32" Name="PictureID" Nullable="true" />
+    <Property Type="String" Name="UrlPicture" Nullable="true" MaxLength="255" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+</Schema>

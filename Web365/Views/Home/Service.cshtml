@@ -1,0 +1,34 @@
+﻿@using System.Text.RegularExpressions
+@using Web365Utility
+@model IEnumerable<Web365Domain.Service.ServiceItem>
+@if (Model != null && Model.Any())
+{
+    <div class="sp-hdvmain">
+        <div class="container">
+            <h2 class="sp-weltit">Dịch vụ hàng đầu</h2>
+            <div class="row">
+                @foreach (var item in Model)
+                {
+                    <div class="col-xs-4">
+                        <div class="sp-hdv-i">
+                            <h2 class="sp-hdv-itit">@item.Title</h2>
+                            <div class="sp-hdv-img">
+                                <a href="@ConfigWeb.Domain/dich-vu/@item.TitleAscii" title="@item.Title">
+                                    <img src="@Web365Utility.GetPathPicture(item.Picture.FileName)" alt="@item.Title" class="wow flipInX" />
+                                </a>
+                            </div>
+                            <div class="sp-hdv-des">
+                                <p>
+                                    @Web365Helper.TruncateStringHelper(Regex.Replace(item.Summary, "<.*?>", string.Empty), 150)
+                                </p>
+                            </div>
+                            <div class="sp-hdv-more">
+                                <a class="btn btn-default" href="@ConfigWeb.Domain/dich-vu/@item.TitleAscii" title="@item.Title">Chi tiết</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+}

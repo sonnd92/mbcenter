@@ -1,0 +1,18 @@
+﻿@model Web365Domain.AdvertiesItem
+@if (Model != null && Model.ListPicture != null && Model.ListPicture.Any())
+{
+    <div class="sp-banner">
+        <div class="swiper-container spbnhome">
+            <div class="swiper-wrapper">
+                @foreach (var pic in Model.ListPicture)
+                {
+                    <div class="swiper-slide">
+                        <a href="@pic.Link"><img src="@Web365Utility.Web365Utility.GetPathPicture(pic.FileName)"/></a>
+                    </div>
+                }
+            </div>
+            <div class="sp-bn-prev"></div>
+            <div class="sp-bn-next"></div>
+        </div>
+    </div>
+}

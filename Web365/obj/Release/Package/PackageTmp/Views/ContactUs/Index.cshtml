@@ -1,0 +1,152 @@
+﻿@model Web365Domain.ProductItem
+@{
+    ViewBag.Title = "Liên hệ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="sp-header-map">
+    <iframe width="100%"
+            height="325"
+            frameborder="0" style="border: 0"
+            src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBUO0vk-QV7FDT1HprKj8LwMw3tvO4vt_Q
+    &q=20+Ngõ+55+Đỗ+Quang+Trung+Hòa+Cầu+Giấy+Hà+Nội&zoom=17" allowfullscreen></iframe>
+</div>
+
+<div class="sp-main">
+    <div class="container">
+        <div class="sp-bread">
+            <ul>
+                <li><a href="/">Trang chủ</a></li>
+                <li class="active"><a href="/lien-he" title="Liên hệ">Liên hệ</a></li>
+            </ul>
+        </div>
+        <div class="sp-contact">
+            <div class="row">
+                <div class="col-xs-7">
+                    <h2 class="sp-ftertit">Momy Baby Center</h2>
+                    <ul class="sp-fteradd">
+                        <li>Địa chỉ: Số 20, Ngõ 55 Đỗ Quang, Trung Hòa, Cầu Giấy, Hà Nội</li>
+                        <li>Email: mommybabycenter@gmail.com</li>
+                        <li>Điện thoại: (04) 62 93 88 33</li>
+                        <li>Giờ mở cửa: <strong>8:30AM - 8:30PM</strong></li>
+                    </ul>
+                    <div class="sp-dchohline">
+                        <a href="tel: 0986400365" title="0986400365">
+                            <i class="sp-hline sp-hlinered"></i> HOTLINE: 0986 400 365
+                        </a>
+                    </div>
+                </div>
+                <form name="contactForm" class="col-xs-5">
+                    <h4 class="sp-ctf-tit">Thông tin liên hệ</h4>
+                    <ul class="sp-ctf-ul">
+                        <li><input type="text" name="Name" class="form-control" placeholder="Họ tên (*)"></li>
+                        <li><input type="text" name="Email" class="form-control" placeholder="Email"></li>
+                        <li><input type="text" name="Phone" class="form-control" placeholder="Số ĐT (*)"></li>
+                        <li><input type="text" name="Title" value="@(Model != null ? "Đặt mua sản phẩm":string.Empty)" class="form-control" placeholder="Tiêu đề (*)"></li>
+                        <li>
+                            <div class="sp-ctf-row clearfix">
+                                <div class="sp-ctf-col1">
+                                    <textarea class="form-control"  name="Message" placeholder="Nội dung liên hệ (*)">@(Model != null ? Model.Name : string.Empty)</textarea>
+                                </div>
+                                <div class="sp-ctf-col2">
+                                    <p><button id="submit" type="submit" class="btn btn-danger">GỬI ĐI</button> </p>
+                                    <p><button type="reset" class="btn btn-default">HỦY BỎ</button> </p>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@Scripts.Render("~/bundles/jqueryval")
+<script>
+    $(function () {
+        $("form[name='contactForm']").validate({
+            rules: {
+                Name: {
+                    required: true,
+                    minlength: 3
+                },
+                Email: {
+                    required: true,
+                    email: true
+                },
+                Phone: {
+                    required: true,
+                    number: true,
+                    minlength: 9,
+                    maxlength: 11
+                },
+                Title: {
+                    required: true,
+                    minlength: 6
+                },
+                Message: {
+                    required: true,
+                    minlength: 6
+                }
+            },
+            messages: {
+                Name: {
+                    required: "Vui lòng nhập họ tên",
+                    minlength: "Họ tên quá ngắn"
+                },
+                Email: {
+                    required: "Vui lòng nhập địa chỉ email",
+                    email: "Vui lòng nhập địa chỉ email"
+                },
+                Phone: {
+                    required: "Vui lòng nhập số điện thoại",
+                    number: "Vui lòng nhập đúng số điện thoại",
+                    minlength: "Vui lòng nhập đúng số điện thoại",
+                    maxlength: "Vui lòng nhập đúng số điện thoại"
+                },
+                Title: {
+                    required: "Vui lòng nhập tiêu đề",
+                    minlength: "Tiêu đề của bạn quá ngắn"
+                },
+                Message: {
+                    required: "Vui lòng nhập nội dung",
+                    minlength: "Nội dung của bạn quá ngắn"
+                }
+            },
+            submitHandler: function (form) {
+                $("#submit").attr("disabled", true);
+                $("#submit").text("GỬI ĐI...");
+                var obj = {};
+                obj.Name = $("input[name='Name']").val();
+                obj.Email = $("input[name='Email']").val();
+                obj.Phone = $("input[name='Phone']").val();
+                obj.Title = $("input[name='Title']").val();
+                obj.Message = $("textarea[name='Message']").val();
+                $.post("/ajax/ContactUs/AddContact", { model: obj }, function (data) {
+                    if (!data.error) {
+                        form.reset();
+                        $.toast({
+                            heading: "Thông báo",
+                            text: data.message,
+                            showHideTransition: 'slide',
+                            icon: 'success',
+                            position: 'bottom-right'
+                        });
+                    } else {
+                        $.toast({
+                            heading: "Thông báo",
+                            text: data.message,
+                            showHideTransition: 'slide',
+                            icon: 'error',
+                            position: 'bottom-right'
+                        });
+                    }
+
+                    $("#submit").removeAttr("disabled");
+                    $("#submit").text("GỬI ĐI");
+                });
+            }
+        });
+    })
+</script>
+

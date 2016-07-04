@@ -1,0 +1,15 @@
+﻿@helper TruncateStringHelper(string content, int maxLength)
+{
+    if (!string.IsNullOrEmpty(content))
+    {
+        if (content.Length > maxLength)
+        {
+            var thisString = content.Substring(0, maxLength); 
+            @Html.Raw(thisString)<text>...</text>
+        }
+        else
+        {
+            @Html.Raw(content)
+        }
+    }
+}

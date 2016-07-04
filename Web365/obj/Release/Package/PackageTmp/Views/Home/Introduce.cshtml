@@ -1,0 +1,14 @@
+﻿@model Web365Domain.ArticleItem
+@if (Model != null)
+{
+    <div class="sp-wel">
+        <div class="container">
+            <div class="wow fadeInUp">
+                <h2 class="sp-weltit">@Model.Title</h2>
+                <div class="sp-weldes">
+                    @Html.Raw(Model.Summary)
+            </div>
+            <a class="sp-welmore btn btn-default" href="/gioi-thieu" title="Xem thêm">Xem thêm</a>
+        </div>
+    </div>
+</div>}

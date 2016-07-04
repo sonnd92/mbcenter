@@ -1,0 +1,62 @@
+﻿@model IEnumerable<Web365Domain.Service.ServiceItem>
+
+@{
+    ViewBag.Title = "Dịch vụ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="sp-header-bot">
+    <div class="container">
+        <h1 class="sp-hbot-tit">Dịch vụ</h1>
+    </div>
+</div>
+
+<div class="sp-main">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-9 col-xs-12">
+                <div class="sp-bread">
+                    <ul>
+                        <li><a href="#">Trang chủ</a></li>
+                        <li class="active"><a href="" title="">Dịch vụ</a></li>
+                    </ul>
+                </div>
+                <div class="sp-lsv">
+                    <div class="sp-lsv-about">
+                        Mommy Baby Center tự hào là Spa cung cấp các dịch vụ chăm sóc mẹ bầu trước và sau sinh, giảm cân sau khi sinh, làm đẹp sau sinh, chăm sóc trẻ sơ sinh, massage và chăm sóc bé cùng với các chuyên gia tư vấn giỏi nhất về cách nuôi dạy cn để bé phát triển toàn diện
+                    </div>
+                    <div class="row">
+                        @foreach (var item in Model)
+                        {
+                            <div class="col-md-4 col-sm-6 col-xs-6">
+                                <div class="sp-lsv-i">
+                                    <div class="sp-lsv-name">
+                                        <a href="@Web365Utility.ConfigWeb.Domain/dich-vu/@item.TitleAscii" title="@item.Title">
+                                            <h3><span>@item.Title</span></h3>
+                                        </a>
+                                    </div>
+                                    <div class="sp-lsv-img">
+                                        <a href="@Web365Utility.ConfigWeb.Domain/dich-vu/@item.TitleAscii" title="@item.Title">
+                                            <img src="@Web365Utility.Web365Utility.GetPathPicture(item.Picture.FileName)" alt="@item.Title" class="wow flipInX"/>
+                                        </a>
+                                    </div>
+                                    <div class="sp-lsv-dest">
+                                        <p>
+                                            @Html.Raw(item.Summary)
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        <!--3-->
+                    </div>
+                    <!--Quy trình chăm sóc-->
+                    @Html.Action("CareProcedures")
+                </div>
+            </div>
+        <!--LEFT-->
+            @Html.Action("MenuRight", "Layout")
+        </div>
+    </div>
+</div>
+

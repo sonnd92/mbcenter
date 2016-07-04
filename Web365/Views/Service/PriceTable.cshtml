@@ -1,0 +1,35 @@
+﻿@model IEnumerable<Web365Domain.Service.GroupOfServiceItem>
+@if (Model != null && Model.Any())
+{
+    <h2 class="sp-dtsv-bgtit">Bảng giá dịch vụ @ViewBag.Title</h2>
+    <div class="sp-lsvb">
+        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+            @for (var j = 0; j < Model.Count(); j++)
+            {
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="heading1">
+                        <h4 class="panel-title">
+                            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-@j" aria-expanded="@(j== 0 ? "true":"false")" aria-controls="collapse1">
+                                <span>@(j + 1)</span><p>@Model.ElementAt(j).Name</p>
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapse-@j" class="panel-collapse collapse @(j == 0 ? "in" : string.Empty)" role="tabpanel" aria-labelledby="heading1" aria-expanded="@(j== 0 ? "true":"false")">
+                        <div class="panel-body">
+                            <ul class="sp-dtsv-bgia">
+                                @foreach (var price in Model.ElementAt(j).DetailServiceItems)
+                                {
+                                    <li class="clearfix">
+                                        <span>@price.Name</span>
+                                        <strong>@(price.Price / 1000)k</strong>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            }
+        </div>
+    </div>
+}

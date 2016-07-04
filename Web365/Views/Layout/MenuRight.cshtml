@@ -1,0 +1,143 @@
+﻿@using Web365Domain
+@model IEnumerable<Web365Domain.ArticleItem>
+
+<div class="col-sm-3 col-xs-12">
+    <div class="sp-mright">
+        <div class="sp-ykcmt">
+            <h2 class="sp-yktit">Ý kiến khách hàng</h2>
+            <div class="swiper-container sp-ykkh-sl">
+                <div class="swiper-wrapper">
+                    @foreach (var item in Model)
+                    {
+                        <div class="swiper-slide">
+                            <div class="sp-khcmt-i clearfix">
+                                <div class="sp-khcmt-img">
+                                    <img src="@Web365Utility.Web365Utility.GetPathThumbPicture(item.Picture.FileName)" alt="" class="wow flipInX" />
+                                </div>
+                                <div class="sp-khcmt-info">
+                                    <h3 class="sp-khcmt-iname">@item.Title</h3>
+                                    <p class="sp-khcmt-iold">@item.Summary</p>
+                                    <div class="sp-khcmt-iwh">
+                                        @Html.Raw(item.Detail)
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+            <div class="sp-ykbtn">
+                <div class="sp-khcmt-prev sp-btn-p"></div>
+                <div class="sp-khcmt-next sp-btn-n"></div>
+            </div>
+        </div>
+        <div class="sp-dknt">
+            <h3 class="sp-dknttit">Nhận tin khuyến mãi</h3>
+            <input type="text" name="PromotionEmail" class="form-control" placeholder="Nhập email đăng ký...">
+            <button id="RegPromotionSubmit" type="button" class=" btn btn-danger">GỬI ĐI</button>
+        </div>
+        <div class="sp-likefb">
+            <div class="fb-page"
+                 data-href="https://www.facebook.com/mommyandbabyspa"
+                 data-small-header="false"
+                 data-adapt-container-width="true"
+                 data-hide-cover="false"
+                 data-show-facepile="true">
+                <div class="fb-xfbml-parse-ignore">
+                    <blockquote cite="https://www.facebook.com/mommyandbabyspa">
+                        <a href="https://www.facebook.com/mommyandbabyspa">MB Center</a>
+                    </blockquote>
+                </div>
+            </div>
+
+        </div>
+        @if (ViewData["ListOtherNews"] != null)
+        {
+            <div class="sp-dtnlq">
+                <h2 class="sp-yktit">@(ViewBag.IsPromotion ? "Tin khuyến mại" : "Tin mới nhất")</h2>
+                <div class="sp-dtnlq-l clearfix">
+                    @{
+            var articleItems = ViewData["ListOtherNews"] as List<ArticleItem>;
+                    }
+                    @if (articleItems != null)
+                    {
+                        foreach (var item in articleItems)
+                        {
+                            <div class="sp-hnews-i">
+                                <div class="clearfix">
+                                    <div class="sp-hnews-img">
+                                        <a href="/tin-tuc/@item.TitleAscii" title="@item.Title">
+                                            <img src="@Web365Utility.Web365Utility.GetPathThumbPicture(item.Picture.FileName)" alt="@item.Title" class="wow flipInX" />
+                                        </a>
+                                    </div>
+                                    <div class="sp-hnews-info">
+                                        <a class="sp-hnews-name" href="/tin-tuc/@item.TitleAscii" title="@item.Title">
+                                            <h3>@item.Title</h3>
+                                        </a>
+                                        <div class="sp-hnews-des">
+                                            @Html.Raw(item.Summary)
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                    <!--1-->
+                </div>
+            </div>
+        }
+    </div>
+</div>
+<!--RIGHT-->
+    <script>
+        $(function () {
+            $("#RegPromotionSubmit").click(function () {
+
+                var email = $("input[name='PromotionEmail']").val();
+                var reEmail = /^(([^<>()\[\]\\.,;:\s@@"]+(\.[^<>()\[\]\\.,;:\s@@"]+)*)|(".+"))@@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+                if (!email || !reEmail.test(email)) {
+
+                    $.toast({
+                        heading: "Thông báo",
+                        text: "Vui lòng nhập email",
+                        showHideTransition: 'slide',
+                        icon: 'warning',
+                        position: 'bottom-right'
+                    });
+
+                    $("input[name='PromotionEmail']").focus();
+
+                    return;
+                }
+
+                $(this).attr("disabled", true);
+                $(this).text("ĐANG GỬI DỮ LIỆU...");
+                $.post("/ajax/ContactUs/RegPromotionNews", { email: email, groupId : 1 }, function (data) {
+                    if (!data.error) {
+
+                        $("input[name='PromotionEmail']").val("");
+
+                        $.toast({
+                            heading: "Thông báo",
+                            text: data.message,
+                            showHideTransition: 'slide',
+                            icon: 'success',
+                            position: 'bottom-right'
+                        });
+                    } else {
+                        $.toast({
+                            heading: "Thông báo",
+                            text: data.message,
+                            showHideTransition: 'slide',
+                            icon: 'error',
+                            position: 'bottom-right'
+                        });
+                    }
+                });
+
+                $(this).removeAttr("disabled");
+                $(this).text("GỬI ĐI");
+            });
+        })
+    </script>
